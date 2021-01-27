@@ -1,26 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Encrypto
+﻿namespace Encrypto
 {
-    class Cipher
+    abstract class Cipher
     {
-        public Cipher(string plainText, bool encrypt)
+        public Cipher(string plainText)
         {
             PlainText = plainText;
-            Encrypt = encrypt;
         }
 
-        public string Caesar_Cipher(int key)
-        {
-            return null;
-        }
+        public abstract string Decrypt();
 
-        public string Double_Caesar_Cipher(string key)
-        {
-            return null;
-        }
+        public abstract string Encrypt();
+
+        public abstract string Convert();
 
         // Calculate modulus division
         private int Mod(int x, int b)
@@ -32,6 +23,5 @@ namespace Encrypto
         // ------------------- Accessor Methods -------------------------------
         // --------------------------------------------------------------------
         public string PlainText { get; }
-        public bool Encrypt { get; }
     }
 }
