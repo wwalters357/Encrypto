@@ -26,7 +26,7 @@ namespace Encrypto
             throw new NotImplementedException();
         }
 
-        private string Double_Caeasr_Substitiution(string text, string key)
+        private string Double_Caeser_Substitiution(string text, string key)
         {
             throw new NotImplementedException();
         }
