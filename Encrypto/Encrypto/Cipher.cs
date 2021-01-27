@@ -11,7 +11,7 @@
 
         public abstract string Encrypt();
 
-        public abstract string Convert();
+        protected abstract string Convert();
 
         // Calculate modulus division
         private int Mod(int x, int b)

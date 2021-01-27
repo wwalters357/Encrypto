@@ -21,7 +21,7 @@ namespace Encrypto
             throw new NotImplementedException();
         }
 
-        public override string Convert()
+        protected override string Convert()
         {
             throw new NotImplementedException();
         }
