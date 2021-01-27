@@ -7,7 +7,19 @@
              x:Class="Encrypto.TabbedPage1">
   <!--Pages can be added as references or inline-->
     <ContentPage Title="Encode/Decode">
-        <Button Text="Back to Main Page" BackgroundColor="Blue" Clicked="NavigateButton_OnClicked"></Button>
+        <StackLayout>
+            <Button Text="Back to Main Page"
+                WidthRequest="200"
+                HorizontalOptions="Start"
+                BackgroundColor="Blue"
+                Clicked="NavigateButton_OnClicked"></Button>
+            <Entry WidthRequest="200" HeightRequest="200" Text="Enter plaintext/ciphertext message here:">
+            </Entry>
+            
+            <Label WidthRequest="200" HeightRequest="200">
+                Result of encode/decode
+            </Label>
+        </StackLayout>
     </ContentPage>
     <ContentPage Title="How it Works!" />
   <ContentPage Title="History" />
