@@ -6,9 +6,9 @@ namespace Encrypto
 {
     class Caesar_Cipher : Cipher
     {
-        public Caesar_Cipher(string plainText, int key) : base(plainText)
+        public Caesar_Cipher(string message, string key, int option) : base(message, key)
         {
-            Key = key;
+            Option = option;
         }
 
         public override string Decrypt()
@@ -21,7 +21,12 @@ namespace Encrypto
             throw new NotImplementedException();
         }
 
-        protected override string Convert()
+        private string Caesar_Substitution(string text, int key)
+        {
+            throw new NotImplementedException();
+        }
+
+        private string Double_Caeasr_Substitiution(string text, string key)
         {
             throw new NotImplementedException();
         }
@@ -29,6 +34,6 @@ namespace Encrypto
         // --------------------------------------------------------------------
         // ------------------- Accessor Methods -------------------------------
         // --------------------------------------------------------------------
-        public int Key { get; }
+        public int Option { get; set; }
     }
 }
