@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Encrypto.MainPage">
+
+    <StackLayout>
+        <!-- Place new controls here -->
+        <Label Text="Encrypto!" 
+           FontSize="30"
+           HorizontalOptions="Center"
+           VerticalOptions="Start" />
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+            <Button WidthRequest="150" HeightRequest="150" Text="1" Clicked="NavigateButton_OnClicked"></Button>
+
+            <Button WidthRequest="150" HeightRequest="150" Text="2"></Button>
+
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+            <Button WidthRequest="150" HeightRequest="150" Text="3"></Button>
+
+            <Button WidthRequest="150" HeightRequest="150" Text="4"></Button>
+
+        </StackLayout>
+
+        <Picker Title="Choose Cipher" HorizontalOptions="FillAndExpand">
+            <Picker.Items>
+            </Picker.Items>
+        </Picker>
+
+    </StackLayout>
+
+</ContentPage>
