@@ -21,12 +21,12 @@ namespace Encrypto
             throw new NotImplementedException();
         }
 
-        private string Caesar_Substitution(string text, int key)
+        private string Caesar_Substitution(string input, int key)
         {
             throw new NotImplementedException();
         }
 
-        private string Double_Caesar_Substitiution(string text, string key)
+        private string Double_Caesar_Substitiution(string input, string key)
         {
             throw new NotImplementedException();
         }
