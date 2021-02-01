@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Encrypto
 {
-    class Caesar_Cipher : Cipher
+    public class Caesar_Cipher : Cipher
     {
         public Caesar_Cipher(string message, string key, Cipher_Type option) : base(message, key)
         {

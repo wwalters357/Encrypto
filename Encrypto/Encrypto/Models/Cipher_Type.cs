@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Encrypto.Models
 {
-    enum Cipher_Type
+    public enum Cipher_Type
     {
         Caesar,
         Double_Caesar,

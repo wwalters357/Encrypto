@@ -5,7 +5,7 @@ using Xamarin.Forms.Xaml.Internals;
 
 namespace Encrypto
 {
-    abstract class Cipher
+    public abstract class Cipher
     {
         public Cipher(string message, string key)
         {
