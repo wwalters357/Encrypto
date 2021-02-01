@@ -100,7 +100,7 @@ namespace Encrypto
             return output;
         }
 
-        // Repeat key for the length of the plain text and for encryptiom
+        // Repeat key for the length of the plain text and for encryption
         // shift each key by the current key letter and for decryption shift the
         // opposite direction for current key letter.
         private string Double_Caesar_Substitiution(string input, string key, bool encryptMessage)
