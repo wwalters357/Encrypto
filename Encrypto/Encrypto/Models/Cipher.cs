@@ -17,6 +17,8 @@ namespace Encrypto
 
         public abstract string Encrypt();
 
+        public abstract bool Is_Key_Valid();
+
         /* 
          * This function which may become a class will account for all the 
          * different methods for determining if a number is prime. Note: Not
@@ -71,14 +73,14 @@ namespace Encrypto
         }
 
         // Calculate modulus division
-        private int Mod(int x, int b)
+        protected int Mod(int x, int b)
         {
             int r = x % b;
             return (x < 0) ? r + b : r;
         }
 
         // If the character is a letter it return A,a=>0 ... Z,z=>25
-        private int Get_Alphabetic_Value(char c)
+        protected int Get_Alphabetic_Value(char c)
         {
             if ( char.IsLetter(c) )
             {

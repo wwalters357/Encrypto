@@ -47,6 +47,11 @@ namespace Encrypto.Models
             return Vernam_Translation(MessageBytes, GeneratedKey);
         }
 
+        public override bool Is_Key_Valid()
+        {
+            return true;
+        }
+
         // --------------------------------------------------------------------
         // ------------------- Accessor Methods -------------------------------
         // --------------------------------------------------------------------
