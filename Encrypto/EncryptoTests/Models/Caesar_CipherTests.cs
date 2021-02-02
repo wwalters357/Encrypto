@@ -25,20 +25,14 @@ namespace Encrypto.Tests
         public void DecryptTest()
         {
             // Testing Caesar Cipher
-            string text = "Uryyb Jbeyq";
             string expected = "Hello World";
-            string key = "13";
-            Cipher_Type option = Cipher_Type.Caesar;
-            Cipher cipher = new Caesar_Cipher(text, key, option);
+            Cipher cipher = new Caesar_Cipher("Uryyb Jbeyq", "13", Cipher_Type.Caesar);
             string result = cipher.Decrypt();
             Assert.AreEqual(expected, result);
 
             // Testing Double Caesar Cipher
-            text = "ksroc eri";
             expected = "hello you";
-            key = "dog";
-            option = Cipher_Type.Double_Caesar;
-            cipher = new Caesar_Cipher(text, key, option);
+            cipher = new Caesar_Cipher("ksroc eri", "dog", Cipher_Type.Double_Caesar);
             result = cipher.Decrypt();
             Assert.AreEqual(expected, result);
         }
@@ -47,22 +41,16 @@ namespace Encrypto.Tests
         public void EncryptTest()
         {
             // Testing Caesar Cipher
-            string expected = "Uryyb Jbeyq";
-            string text = "Hello World";
-            string key = "13";
-            Cipher_Type option = Cipher_Type.Caesar;
-            Cipher cipher = new Caesar_Cipher(text, key, option);     
-            string result = cipher.Encrypt();
-            Assert.AreEqual(expected, result);
+            string actual = "Uryyb Jbeyq";
+            Cipher cipher = new Caesar_Cipher("Hello World", "13", Cipher_Type.Caesar);     
+            string expected = cipher.Encrypt();
+            Assert.AreEqual(expected, actual);
 
             // Testing Double Caesar Cipher
-            expected = "ksroc eri";
-            text = "hello you";
-            key = "dog";
-            option = Cipher_Type.Double_Caesar;
-            cipher = new Caesar_Cipher(text, key, option);
-            result = cipher.Encrypt();
-            Assert.AreEqual(expected, result);
+            actual = "ksroc eri";
+            cipher = new Caesar_Cipher("hello you", "dog", Cipher_Type.Double_Caesar);
+            expected = cipher.Encrypt();
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
