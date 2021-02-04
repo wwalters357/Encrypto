@@ -21,6 +21,7 @@ namespace Encrypto
         private const double CloudMediumSpeed = 0.6;
         private const double CloudSmallSpeed = 0.7;
 
+        // double Y value for each page element.
         private double _parallaxLabelStartY;
         private double _parallaxShadowCityStartY;
         private double _parallaxSkyscrapersStartY;
@@ -65,16 +66,19 @@ namespace Encrypto
         // --------------------------------------------------------------------
         // -----------------------Tabbed Page 1--------------------------------
         // --------------------------------------------------------------------
+        
+        // Navigation back button to return to the home page.
         private async void NavigateButton_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MainPage());
         }
 
+        // Stores message/key while the user types each letter.
         void OnEntryTextChanged(object sender, TextChangedEventArgs e)
         {
             string oldText = e.OldTextValue;
             string newText = e.NewTextValue;
-            // Stores whatever is in Enter text box incase enter is not pressed
+            // Stores whatever is in Enter text box incase enter is not pressed.
             if (((Editor)sender).ClassId.Equals("Input_Text"))
             {
                 cipher.Message = newText;
@@ -99,10 +103,13 @@ namespace Encrypto
             }
         }
 
+        // Parse plaintext and output converted ciphertext.
         private async void Encryption_OnClicked(object sender, EventArgs e)
         {
             if (cipher.Is_Initialized())
-            { 
+            {
+                // This line will yield control to the UI while Encrypt()
+                // performs its work. The UI thread is free to perform other work.
                 Result_Message.Text = await Task.Run(() => cipher.Encrypt());
             }
             else
@@ -111,10 +118,13 @@ namespace Encrypto
             }
         }
 
+        // Parse ciphertext and output converted plaintext.
         private async void Decryption_OnClicked(object sender, EventArgs e)
         {
             if (cipher.Is_Initialized())
             {
+                // This line will yield control to the UI while Decrypt()
+                // performs its work. The UI thread is free to perform other work.
                 Result_Message.Text = await Task.Run(() => cipher.Decrypt());
             }
             else
@@ -123,6 +133,7 @@ namespace Encrypto
             }
         }
 
+        // Swap text between Editors Input_text and Result_Message.
         private void SwitchText_OnClicked(object sender, EventArgs e)
         {
             string temp = Input_Text.Text;
@@ -137,32 +148,7 @@ namespace Encrypto
         {
             base.OnSizeAllocated(width, height);
 
-            // Init start position for parallax elements
-            /*CityImage.WidthRequest = width;
-            CityImage.TranslationY = ParalaxContainer.Height -
-                                     CityImage.Height;
-            CityImage.TranslationX = 0;
-
-            ShadowCityImage.WidthRequest = width;
-            ShadowCityImage.TranslationY =
-                _parallaxShadowCityStartY = ParalaxContainer.Height -
-                                            ShadowCityImage.Height - 30;
-            ShadowCityImage.TranslationX = 0;
-
-            SkyscrapersImage.WidthRequest = width;
-            SkyscrapersImage.TranslationY =
-                _parallaxSkyscrapersStartY =
-                    _parallaxShadowCityStartY = ParalaxContainer.Height -
-                                                SkyscrapersImage.Height - 30;
-            SkyscrapersImage.TranslationX = 0;
-
-            CloudMediumImage.TranslationX = ParalaxContainer.Width -
-                                            CloudMediumImage.Width - 20;
-            CloudMediumImage.TranslationY = _parallaxCloudMediumStartY = 60;
-
-            _parallaxCloudBiggestStartY = CloudBiggestImage.TranslationY;
-            _parallaxCloudSmallStartY = CloudSmallImage.TranslationY;*/
-
+            // Init start position for parallax elements.
             ParallaxLabel.TranslationX = ParalaxContainer.Width / 2
                                          - ParallaxLabel.Width / 2;
             ParallaxLabel.TranslationY =
@@ -173,11 +159,6 @@ namespace Encrypto
         private void ParallaxScrollViewOnScrolled(object sender, ScrolledEventArgs e)
         {
             ParalaxTextAnimation(e.ScrollY);
-            //ParalaxShadowCityAnimation(e.ScrollY);
-            //ParalaxSkyscrapersAnimation(e.ScrollY);
-            //ParalaxCloudBiggestAnimation(e.ScrollY);
-            //ParalaxCloudMediumAnimation(e.ScrollY);
-            //ParalaxCloudSmallAnimation(e.ScrollY);
         }
 
         private void ParalaxTextAnimation(double scrollY)
@@ -185,36 +166,6 @@ namespace Encrypto
             ParalaxAnimation(ParallaxLabel, scrollY, _parallaxLabelStartY, 0,
                 ParalaxContainer.HeightRequest - ParallaxLabel.Height, TextSpeed);
         }
-
-        /*private void ParalaxShadowCityAnimation(double scrollY)
-        {
-            ParalaxAnimation(ShadowCityImage, scrollY, _parallaxShadowCityStartY, 0,
-                ParalaxContainer.HeightRequest - ShadowCityImage.Height, ShadowSpeed);
-        }
-
-        private void ParalaxSkyscrapersAnimation(double scrollY)
-        {
-            ParalaxAnimation(SkyscrapersImage, scrollY, _parallaxSkyscrapersStartY, 0,
-                ParalaxContainer.HeightRequest - SkyscrapersImage.Height, SkyscrapersSpeed);
-        }
-
-        private void ParalaxCloudBiggestAnimation(double scrollY)
-        {
-            ParalaxAnimation(CloudBiggestImage, scrollY, _parallaxCloudBiggestStartY, 20,
-                ParalaxContainer.HeightRequest - CloudBiggestImage.Height, CloudBiggestSpeed);
-        }
-
-        private void ParalaxCloudMediumAnimation(double scrollY)
-        {
-            ParalaxAnimation(CloudMediumImage, scrollY, _parallaxCloudMediumStartY, 0,
-                ParalaxContainer.HeightRequest - CloudMediumImage.Height, CloudMediumSpeed);
-        }
-
-        private void ParalaxCloudSmallAnimation(double scrollY)
-        {
-            ParalaxAnimation(CloudSmallImage, scrollY, _parallaxCloudSmallStartY, 30,
-                ParalaxContainer.HeightRequest - CloudSmallImage.Height - CloudMediumImage.Height, CloudSmallSpeed);
-        }*/
 
         private void ParalaxAnimation(View control,
                                       double scrollY,

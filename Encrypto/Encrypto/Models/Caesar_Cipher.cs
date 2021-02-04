@@ -12,7 +12,7 @@ namespace Encrypto
             Option = option;
         }
 
-        // Run error checking and return decoded string
+        // Run error checking and return decoded string.
         public override string Decrypt()
         {
             if (!Is_Key_Valid())
@@ -30,7 +30,7 @@ namespace Encrypto
             }
         }
 
-        // Run error checking and return encoded string 
+        // Run error checking and return encoded string. 
         public override string Encrypt()
         {
             if (!Is_Key_Valid())
@@ -48,8 +48,8 @@ namespace Encrypto
             }
         }
 
-        // Check if the key is an integer for Caesar Cipher
-        // Check if the key is a string for Double Caesar Cipher 
+        // Check if the key is an integer for Caesar Cipher.
+        // Check if the key is a string for Double Caesar Cipher.
         public override bool Is_Key_Valid()
         {
             if (Key.Length < 1)
@@ -77,7 +77,7 @@ namespace Encrypto
             throw new Exception("Invalid Cipher Type!");
         }
 
-        // Shift each letter by a given key
+        // Shift each letter by a given key.
         private string Caesar_Substitution(string input, int key)
         {
             string output = "";

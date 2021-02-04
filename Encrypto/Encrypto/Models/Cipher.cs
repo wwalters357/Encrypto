@@ -7,6 +7,7 @@ namespace Encrypto
 {
     public abstract class Cipher
     {
+        // Cipher Constructor
         public Cipher(string message, string key, string name)
         {
             Message = message;
@@ -14,12 +15,16 @@ namespace Encrypto
             Name = name;
         }
 
+        // Decodes ciphertext and returns plaintext.
         public abstract string Decrypt();
 
+        // Encodes plaintext and returns ciphertext.
         public abstract string Encrypt();
 
+        // Checks if the key is valid for selected cipher.
         public abstract bool Is_Key_Valid();
 
+        // Checks if there is enough info is entered to translate the message.
         public virtual bool Is_Initialized()
         {
             return Message.Length > 0 && Key.Length > 0;
@@ -28,12 +33,12 @@ namespace Encrypto
         /* 
          * This function which may become a class will account for all the 
          * different methods for determining if a number is prime. Note: Not
-         * all tests are deterministic by themselfves.
+         * all tests are deterministic by themselves.
          * 
          * ex.
          * Fermat's little theorem
          * must satisfy x^(p-1) = 1 mod p
-         * If for some x this is true than it is pseudoprime
+         * If for some x this is true than it is pseudoprime.
         */
         private bool IsPrime(BigInteger x, Primality_Test option)
         {
@@ -47,9 +52,10 @@ namespace Encrypto
                         return Simple_Primality_Test(x);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                // Maybe from time-outs 
+                // Maybe from time-outs because some of the methods will
+                // be computationally expensive.
                 return false;
             }
             return false;

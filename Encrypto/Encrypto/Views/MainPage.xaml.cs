@@ -33,6 +33,8 @@ namespace Encrypto
                 int selectedIndex = picker.SelectedIndex;
                 cipher = picker.Items[selectedIndex];
             }
+
+            // Determines which cipher to initialize on the tabbed pages.
             switch (cipher)
             {
                 case "Caesar Cipher":

@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Encrypto.Models
 {
+    // NOTE: Figure out when to generate a new key!
     class Vernam_Cipher : Cipher
     {
         public Vernam_Cipher(string message) : base(message, "", "Vernam Cipher")
@@ -52,6 +53,7 @@ namespace Encrypto.Models
             return true;
         }
 
+        // Needed to override 
         public override bool Is_Initialized()
         {
             return Message.Length > 0;
