@@ -6,7 +6,7 @@ namespace Encrypto.Models
 {
     class Vernam_Cipher : Cipher
     {
-        public Vernam_Cipher(string message, string key) : base(message, key)
+        public Vernam_Cipher(string message) : base(message, "", "Vernam Cipher")
         {
             MessageBytes = Encoding.ASCII.GetBytes(message);
             GeneratedKey = Generate_Key(message.Length);
@@ -50,6 +50,11 @@ namespace Encrypto.Models
         public override bool Is_Key_Valid()
         {
             return true;
+        }
+
+        public override bool Is_Initialized()
+        {
+            return Message.Length > 0;
         }
 
         // --------------------------------------------------------------------

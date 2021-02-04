@@ -6,7 +6,7 @@ namespace Encrypto.Models
 {
     public class Hill_Cipher : Cipher
     {
-        public Hill_Cipher(string message, string key) : base(message, key)
+        public Hill_Cipher(string message, string key) : base(message, key, "Hill Cipher")
         {
 
         }

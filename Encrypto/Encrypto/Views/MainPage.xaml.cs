@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Encrypto.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -20,7 +21,42 @@ namespace Encrypto
 
         private async void NavigateButton_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new TabbedPage1());
+            Cipher_Type type = Cipher_Type.Caesar;
+            string cipher = "";
+            if (sender is Button)
+            {
+                cipher = ((Button)sender).Text;
+            }
+            else if (sender is Picker)
+            {
+                var picker = (Picker)sender;
+                int selectedIndex = picker.SelectedIndex;
+                cipher = picker.Items[selectedIndex];
+            }
+            switch (cipher)
+            {
+                case "Caesar Cipher":
+                    type = Cipher_Type.Caesar;
+                    break;
+                case "Double Caesar Cipher":
+                    type = Cipher_Type.Double_Caesar;
+                    break;
+                case "Monoalphabetic Cipher":
+                    type = Cipher_Type.Monoalphabetic;
+                    break;
+                case "Homophonic Cipher":
+                    type = Cipher_Type.Homophonic;
+                    break;
+                case "Hill Cipher":
+                    type = Cipher_Type.Hill;
+                    break;
+                case "Vernam Cipher":
+                    type = Cipher_Type.Vernam;
+                    break;
+                default:
+                    break;
+            }
+            await Navigation.PushAsync(new TabbedPage1(type));
         }
     }
 }

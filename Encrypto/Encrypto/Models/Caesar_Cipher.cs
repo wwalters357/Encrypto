@@ -7,7 +7,7 @@ namespace Encrypto
 {
     public class Caesar_Cipher : Cipher
     {
-        public Caesar_Cipher(string message, string key, Cipher_Type option) : base(message, key)
+        public Caesar_Cipher(string message, string key, Cipher_Type option) : base(message, key, (option == Cipher_Type.Caesar) ? "Caesar Cipher" : "Double Caesar Cipher")
         {
             Option = option;
         }

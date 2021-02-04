@@ -7,10 +7,11 @@ namespace Encrypto
 {
     public abstract class Cipher
     {
-        public Cipher(string message, string key)
+        public Cipher(string message, string key, string name)
         {
             Message = message;
             Key = key;
+            Name = name;
         }
 
         public abstract string Decrypt();
@@ -18,6 +19,11 @@ namespace Encrypto
         public abstract string Encrypt();
 
         public abstract bool Is_Key_Valid();
+
+        public virtual bool Is_Initialized()
+        {
+            return Message.Length > 0 && Key.Length > 0;
+        }
 
         /* 
          * This function which may become a class will account for all the 
@@ -109,7 +115,8 @@ namespace Encrypto
         // --------------------------------------------------------------------
         // ------------------- Accessor Methods -------------------------------
         // --------------------------------------------------------------------
-        public string Message { get; }
-        public string Key { get; }
+        public string Message { get; set; }
+        public string Key { get; set; }
+        public string Name { get; set; }
     }
 }

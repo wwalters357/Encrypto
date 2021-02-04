@@ -6,7 +6,7 @@ namespace Encrypto.Models
 {
     class Homophonic_Cipher : Cipher
     {
-        public Homophonic_Cipher(string message, string key) : base(message, key)
+        public Homophonic_Cipher(string message, string key) : base(message, key, "Homophonic Cipher")
         {
 
         }

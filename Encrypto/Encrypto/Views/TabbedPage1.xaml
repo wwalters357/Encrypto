@@ -1,26 +1,86 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="Encrypto.TabbedPage1">
-  <!--Pages can be added as references or inline-->
-    <ContentPage Title="Encode/Decode">
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            mc:Ignorable="d"
+            x:Class="Encrypto.TabbedPage1">
+    <!--Pages can be added as references or inline-->
+    <ContentPage Title="Encode Decode" BackgroundColor="LightGray">
+        
         <StackLayout>
-            <Button Text="Back to Main Page"
-                WidthRequest="200"
-                HorizontalOptions="Start"
-                BackgroundColor="Blue"
-                Clicked="NavigateButton_OnClicked"></Button>
-            <Entry WidthRequest="200" HeightRequest="200" Text="Enter plaintext/ciphertext message here:">
-            </Entry>
             
-            <Label WidthRequest="200" HeightRequest="200">
-                Result of encode/decode
+            <Label x:Name="Cipher_Name"
+                   Text="Caesar Cipher"
+                   FontSize="30"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Center"></Label>
+
+            <Editor x:Name="Input_Text"
+                    ClassId="Input_Text"
+                    Text="Enter message here:"
+                    FontSize="24"
+                    BackgroundColor="DarkGray"   
+                    IsVisible="True"
+                    WidthRequest="200" 
+                    HeightRequest="200"
+                    TextChanged="OnEntryTextChanged"
+                    Completed="OnEntryCompleted">
+            </Editor>
+
+            <Editor x:Name="Input_Key"
+                    ClassId="Input_Key"
+                    Text="Enter key here:"
+                    FontSize="24"
+                    BackgroundColor="DarkGray"       
+                    WidthRequest="200"
+                    TextChanged="OnEntryTextChanged"
+                    Completed="OnEntryCompleted">
+            </Editor>
+
+            <StackLayout Orientation="Horizontal">
+                
+                <Button Text="Encode"
+                        TextColor="White"
+                        WidthRequest="150"
+                        CornerRadius="20"
+                        HorizontalOptions="Start"
+                        BackgroundColor="Black"
+                        Clicked="Encryption_OnClicked"></Button>
+                
+                <Button Text="Decode"
+                        TextColor="White"
+                        WidthRequest="150"
+                        CornerRadius="20"
+                        HorizontalOptions="Start"
+                        BackgroundColor="Black"
+                        Clicked="Decryption_OnClicked"></Button>
+
+                <Button Text="Switch"
+                        TextColor="White"
+                        CornerRadius="20"
+                        HorizontalOptions="End"
+                        BackgroundColor="Black"
+                        Clicked="SwitchText_OnClicked"></Button>
+
+            </StackLayout>
+            
+            <Label x:Name="Result_Message" 
+                   WidthRequest="200" 
+                   HeightRequest="200" 
+                   FontSize="24"
+                   BackgroundColor="DarkGray"
+                   Text="Result of encode/decode">
             </Label>
+            
         </StackLayout>
+        
     </ContentPage>
-    <ContentPage Title="How it Works!" />
-  <ContentPage Title="History" />
+
+    <ContentPage Title="How it Works" BackgroundColor="LightGray">
+    
+    </ContentPage>
+
+    <ContentPage Title="History"  BackgroundColor="LightGray" />
+
 </TabbedPage>

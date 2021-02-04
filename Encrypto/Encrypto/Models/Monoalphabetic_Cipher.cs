@@ -7,7 +7,7 @@ namespace Encrypto
 {
     public class Monoalphabetic_Cipher : Cipher
     {
-		public Monoalphabetic_Cipher(string message, string key) : base(message, key)
+		public Monoalphabetic_Cipher(string message, string key) : base(message, key, "Monoalphabetic Cipher")
         {
 
         }
