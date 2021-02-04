@@ -2,14 +2,14 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             mc:Ignorable="d"
             x:Class="Encrypto.TabbedPage1">
     <!--Pages can be added as references or inline-->
     <ContentPage Title="Encode Decode" BackgroundColor="LightGray">
-        
+
         <StackLayout>
-            
+
             <Label x:Name="Cipher_Name"
                    Text="Caesar Cipher"
                    FontSize="30"
@@ -39,7 +39,7 @@
             </Editor>
 
             <StackLayout Orientation="Horizontal">
-                
+
                 <Button Text="Encode"
                         TextColor="White"
                         WidthRequest="150"
@@ -47,7 +47,7 @@
                         HorizontalOptions="Start"
                         BackgroundColor="Black"
                         Clicked="Encryption_OnClicked"></Button>
-                
+
                 <Button Text="Decode"
                         TextColor="White"
                         WidthRequest="150"
@@ -64,7 +64,7 @@
                         Clicked="SwitchText_OnClicked"></Button>
 
             </StackLayout>
-            
+
             <Label x:Name="Result_Message" 
                    WidthRequest="200" 
                    HeightRequest="200" 
@@ -72,13 +72,47 @@
                    BackgroundColor="DarkGray"
                    Text="Result of encode/decode">
             </Label>
-            
+
         </StackLayout>
-        
+
     </ContentPage>
 
-    <ContentPage Title="How it Works" BackgroundColor="LightGray">
-    
+    <ContentPage Title="How it Works"
+                 BackgroundColor="LightGray"
+                 xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:parallaxScroll="clr-namespace:Encrypto;assembly=Encrypto">
+        <ScrollView x:Name="ParallaxScrollView">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <BoxView  />
+
+                <RelativeLayout Grid.Row="0"
+                                x:Name="ParalaxContainer"
+                                VerticalOptions="Center"
+                                HeightRequest="200"
+                                BackgroundColor="#8DBDCD">
+
+                    <!-- Place images here! -->
+                    
+                    <Label x:Name="ParallaxLabel"
+                           Rotation="-7.5"
+                           FormattedText="Parallax&#x0a;Scroll"
+                           FontSize="Large"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="CenterAndExpand">
+                    </Label>
+                </RelativeLayout>
+
+                <parallaxScroll:WikiView Grid.Row="1" Padding="20" />
+
+            </Grid>
+        </ScrollView>
     </ContentPage>
 
     <ContentPage Title="History"  BackgroundColor="LightGray" />
