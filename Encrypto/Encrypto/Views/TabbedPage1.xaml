@@ -18,7 +18,7 @@
 
             <Editor x:Name="Input_Text"
                     ClassId="Input_Text"
-                    Text="Enter message here:"
+                    Placeholder="Enter message here:"
                     FontSize="24"
                     BackgroundColor="DarkGray"   
                     IsVisible="True"
@@ -30,7 +30,7 @@
 
             <Editor x:Name="Input_Key"
                     ClassId="Input_Key"
-                    Text="Enter key here:"
+                    Placeholder="Enter key here:"
                     FontSize="24"
                     BackgroundColor="DarkGray"       
                     WidthRequest="200"

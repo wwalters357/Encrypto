@@ -65,6 +65,7 @@
                     <x:String>Homophonic Cipher</x:String>
                     <x:String>Hill Cipher</x:String>
                     <x:String>Vernam Cipher</x:String>
+                    <x:String>Transposition Cipher</x:String>
                 </Picker.Items>
             </Picker>
 

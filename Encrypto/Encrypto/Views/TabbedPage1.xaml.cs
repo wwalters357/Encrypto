@@ -108,9 +108,16 @@ namespace Encrypto
         {
             if (cipher.Is_Initialized())
             {
-                // This line will yield control to the UI while Encrypt()
-                // performs its work. The UI thread is free to perform other work.
-                Result_Message.Text = await Task.Run(() => cipher.Encrypt());
+                try
+                {
+                    // This line will yield control to the UI while Encrypt()
+                    // performs its work. The UI thread is free to perform other work.
+                    Result_Message.Text = await Task.Run(() => cipher.Encrypt());
+                }
+                catch(Exception)
+                {
+                    Result_Message.Text = "Invalid Key Entered";
+                }
             }
             else
             {
@@ -123,9 +130,16 @@ namespace Encrypto
         {
             if (cipher.Is_Initialized())
             {
-                // This line will yield control to the UI while Decrypt()
-                // performs its work. The UI thread is free to perform other work.
-                Result_Message.Text = await Task.Run(() => cipher.Decrypt());
+                try
+                {
+                    // This line will yield control to the UI while Decrypt()
+                    // performs its work. The UI thread is free to perform other work.
+                    Result_Message.Text = await Task.Run(() => cipher.Decrypt());
+                }
+                catch(Exception)
+                {
+                    Result_Message.Text = "Invalid Key Entered";
+                }
             }
             else
             {
