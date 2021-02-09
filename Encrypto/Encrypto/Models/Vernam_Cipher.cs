@@ -4,7 +4,6 @@ using System.Text;
 
 namespace Encrypto.Models
 {
-    // NOTE: Figure out when to generate a new key!
     class Vernam_Cipher : Cipher
     {
         public Vernam_Cipher(string message) : base(message, "", "Vernam Cipher")
@@ -32,6 +31,7 @@ namespace Encrypto.Models
 
         public override string Encrypt()
         {
+            GeneratedKey = Generate_Key(Message.Length);
             return Vernam_Translation(MessageBytes, GeneratedKey);
         }
 
@@ -63,6 +63,6 @@ namespace Encrypto.Models
         // ------------------- Accessor Methods -------------------------------
         // --------------------------------------------------------------------
         public byte[] MessageBytes { get; }
-        public byte[] GeneratedKey { get; }
+        public byte[] GeneratedKey { get; set; }
     }
 }

@@ -192,5 +192,10 @@ namespace Encrypto
             if (newPosition > minPosition && newPosition < maxPosition)
                 control.TranslationY = newPosition;
         }
+
+        private void Generate_Key_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
