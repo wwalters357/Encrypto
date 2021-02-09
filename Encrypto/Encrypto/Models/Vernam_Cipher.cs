@@ -25,19 +25,6 @@ namespace Encrypto.Models
             return keyBytes;
         }
 
-        /*
-         * The message is encrypted using XOR operation bewteen inBytes
-         * and keyBytes. 
-	    */
-        private string Vernam_Translation(byte[] messageBytes, byte[] keyBytes)
-        {
-            for (int i = 0; i < messageBytes.Length; i++)
-            {
-                messageBytes[i] = (byte)(messageBytes[i] ^ keyBytes[i]);
-            }
-            return Encoding.ASCII.GetString(messageBytes);
-        }
-
         public override string Decrypt()
         {
             return Vernam_Translation(MessageBytes, GeneratedKey);
@@ -57,6 +44,19 @@ namespace Encrypto.Models
         public override bool Is_Initialized()
         {
             return Message.Length > 0;
+        }
+
+        /*
+         * The message is encrypted using XOR operation bewteen inBytes
+         * and keyBytes. 
+	    */
+        private string Vernam_Translation(byte[] messageBytes, byte[] keyBytes)
+        {
+            for (int i = 0; i < messageBytes.Length; i++)
+            {
+                messageBytes[i] = (byte)(messageBytes[i] ^ keyBytes[i]);
+            }
+            return Encoding.ASCII.GetString(messageBytes);
         }
 
         // --------------------------------------------------------------------
