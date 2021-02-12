@@ -14,13 +14,20 @@ namespace Encrypto
         
 		public override string Decrypt()
         {
-            // return Substitution(Key, false);
-            throw new NotImplementedException();
+			if (!Is_Key_Valid())
+			{
+				throw new Exception("Invalid Key");
+			}
+			return Monoalphabetic_Substitution(Message, Key, false);
         }
 
         public override string Encrypt()
         {
-            return Monoalphabetic_Substitution(Message, Key, true);
+			if (!Is_Key_Valid())
+			{
+				throw new Exception("Invalid Key");
+			}
+			return Monoalphabetic_Substitution(Message, Key, true);
         }
 
 		// Checks the key to make sure it is 26 characters, all letters and has no duplicates

@@ -107,6 +107,10 @@
                            HorizontalTextAlignment="Center"
                            VerticalOptions="CenterAndExpand">
                     </Label>
+
+                    <!-- Add parallax scrolling for selected image. -->
+                    <Image Source="Caesar_Cipher.png"></Image>
+                    
                 </RelativeLayout>
 
                 <parallaxScroll:WikiView Grid.Row="1" Padding="20" />
