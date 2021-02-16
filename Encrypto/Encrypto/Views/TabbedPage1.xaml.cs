@@ -1,4 +1,5 @@
 ﻿using Encrypto.Models;
+using Encrypto.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,45 +14,16 @@ namespace Encrypto
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TabbedPage1 : TabbedPage
     {
-        private Cipher cipher = null;
+        private CipherViewModel cipher = null;
 
         public TabbedPage1(Cipher_Type cipherType)
         {
             InitializeComponent();
 
-            switch (cipherType)
-            {
-                case Cipher_Type.Caesar:
-                    cipher = new Caesar_Cipher("", "", cipherType);
-                    break;
-                case Cipher_Type.Double_Caesar:
-                    cipher = new Caesar_Cipher("", "", cipherType);
-                    break;
-                case Cipher_Type.Monoalphabetic:
-                    cipher = new Monoalphabetic_Cipher("", "");
-                    break;
-                case Cipher_Type.Homophonic:
-                    cipher = new Homophonic_Cipher("", "");
-                    break;
-                case Cipher_Type.Hill:
-                    cipher = new Hill_Cipher("", "");
-                    break;
-                case Cipher_Type.Vernam:
-                    cipher = new Vernam_Cipher("");
-                    Input_Key.IsVisible = false;
-                    break;
-                default:
-                    break;
-            }
+            cipher = new CipherViewModel(cipherType);
 
-            // Set name of Cipher on top of tabbed page 1
-            Cipher_Name.Text = cipher.Name;
-
-            // Set image source of Cipher on tabbed page 2
-            Cipher_Image.Source = cipher.Image;
-
-            // Set history of Cipher on tabbed page 3
-            Cipher_History.Text = cipher.History;
+            // Bind Cipher ViewModel object to tabbed page
+            this.BindingContext = cipher;
         }
 
         // --------------------------------------------------------------------
@@ -97,13 +69,13 @@ namespace Encrypto
         // Parse plaintext and output converted ciphertext.
         private async void Encryption_OnClicked(object sender, EventArgs e)
         {
-            if (cipher.Is_Initialized())
+            if (cipher.Is_Initialized)
             {
                 try
                 {
                     // This line will yield control to the UI while Encrypt()
                     // performs its work. The UI thread is free to perform other work.
-                    Result_Message.Text = await Task.Run(() => cipher.Encrypt());
+                    Result_Message.Text = await Task.Run(() => cipher.Encrypt);
                 }
                 catch(Exception)
                 {
@@ -119,13 +91,13 @@ namespace Encrypto
         // Parse ciphertext and output converted plaintext.
         private async void Decryption_OnClicked(object sender, EventArgs e)
         {
-            if (cipher.Is_Initialized())
+            if (cipher.Is_Initialized)
             {
                 try
                 {
                     // This line will yield control to the UI while Decrypt()
                     // performs its work. The UI thread is free to perform other work.
-                    Result_Message.Text = await Task.Run(() => cipher.Decrypt());
+                    Result_Message.Text = await Task.Run(() => cipher.Decrypt);
                 }
                 catch(Exception)
                 {

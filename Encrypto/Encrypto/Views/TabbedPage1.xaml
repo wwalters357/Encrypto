@@ -2,7 +2,7 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
             mc:Ignorable="d"
             x:Class="Encrypto.TabbedPage1">
     <!--Pages can be added as references or inline-->
@@ -11,7 +11,7 @@
         <StackLayout>
 
             <Label x:Name="Cipher_Name"
-                   Text="Caesar Cipher"
+                   Text="{Binding Name}"
                    FontSize="30"
                    VerticalOptions="Start"
                    HorizontalOptions="Center"></Label>
@@ -80,17 +80,37 @@
     <ContentPage Title="How it Works"
                  BackgroundColor="GhostWhite">
 
-        <Image x:Name="Cipher_Image"
-               Source="caesar_cipher.png"
-               Aspect="AspectFit"
-               HorizontalOptions="FillAndExpand"
-               VerticalOptions="Start" />
+        <StackLayout>
+
+            <Image x:Name="Cipher_Image"
+                       Source="{Binding Image}"
+                       Aspect="AspectFit"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="Start" />
+
+            <ScrollView VerticalOptions="FillAndExpand">
+
+                <Label x:Name="Cipher_Description"
+                       Text="{Binding Description}"
+                       FontSize="20"
+                       Margin="20" />
+
+            </ScrollView>
+
+        </StackLayout>
 
     </ContentPage>
 
-    <ContentPage Title="History" BackgroundColor="LightGray">
+    <ContentPage Title="History" BackgroundColor="GhostWhite">
 
-        <Label x:Name="Cipher_History" />
+        <ScrollView VerticalOptions="FillAndExpand">
+            
+            <Label x:Name="Cipher_History"
+                   Text="{Binding History}"
+                   FontSize="20"
+                   Margin="20" />
+            
+        </ScrollView>
 
     </ContentPage>
 
