@@ -78,47 +78,20 @@
     </ContentPage>
 
     <ContentPage Title="How it Works"
-                 BackgroundColor="LightGray"
-                 xmlns="http://xamarin.com/schemas/2014/forms"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:parallaxScroll="clr-namespace:Encrypto;assembly=Encrypto">
-        <ScrollView x:Name="ParallaxScrollView">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="200" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                 BackgroundColor="GhostWhite">
 
-                <BoxView  />
+        <Image x:Name="Cipher_Image"
+               Source="caesar_cipher.png"
+               Aspect="AspectFit"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="Start" />
 
-                <RelativeLayout Grid.Row="0"
-                                x:Name="ParalaxContainer"
-                                VerticalOptions="Center"
-                                HeightRequest="200"
-                                BackgroundColor="#8DBDCD">
-
-                    <!-- Place images here! -->
-                    
-                    <Label x:Name="ParallaxLabel"
-                           Rotation="-7.5"
-                           FormattedText="Parallax&#x0a;Scroll"
-                           FontSize="Large"
-                           TextColor="White"
-                           HorizontalTextAlignment="Center"
-                           VerticalOptions="CenterAndExpand">
-                    </Label>
-
-                    <!-- Add parallax scrolling for selected image. -->
-                    <Image Source="Caesar_Cipher.png"></Image>
-                    
-                </RelativeLayout>
-
-                <parallaxScroll:WikiView Grid.Row="1" Padding="20" />
-
-            </Grid>
-        </ScrollView>
     </ContentPage>
 
-    <ContentPage Title="History"  BackgroundColor="LightGray" />
+    <ContentPage Title="History" BackgroundColor="LightGray">
+
+        <Label x:Name="Cipher_History" />
+
+    </ContentPage>
 
 </TabbedPage>

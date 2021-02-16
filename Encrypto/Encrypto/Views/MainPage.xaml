@@ -6,12 +6,12 @@
              mc:Ignorable="d"
              x:Class="Encrypto.MainPage">
     
-    <Frame BackgroundColor="LightGray" Padding="24" CornerRadius="0" >
+    <Frame BackgroundColor="GhostWhite" Padding="24" CornerRadius="0" >
         
         <StackLayout>
             <!-- Place new controls here -->
             <Label Text="Encrypto!" 
-                   FontSize="30"
+                   FontSize="36"
                    HorizontalOptions="Center"
                    VerticalOptions="Start" />
 

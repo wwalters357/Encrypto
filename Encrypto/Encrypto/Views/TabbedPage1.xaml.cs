@@ -14,26 +14,10 @@ namespace Encrypto
     public partial class TabbedPage1 : TabbedPage
     {
         private Cipher cipher = null;
-        private const double TextSpeed = 0.5;
-        private const double ShadowSpeed = 0.2;
-        private const double SkyscrapersSpeed = 0.4;
-        private const double CloudBiggestSpeed = 0.35;
-        private const double CloudMediumSpeed = 0.6;
-        private const double CloudSmallSpeed = 0.7;
-
-        // double Y value for each page element.
-        private double _parallaxLabelStartY;
-        private double _parallaxShadowCityStartY;
-        private double _parallaxSkyscrapersStartY;
-        private double _parallaxCloudBiggestStartY;
-        private double _parallaxCloudMediumStartY;
-        private double _parallaxCloudSmallStartY;
 
         public TabbedPage1(Cipher_Type cipherType)
         {
             InitializeComponent();
-
-            ParallaxScrollView.Scrolled += ParallaxScrollViewOnScrolled;
 
             switch (cipherType)
             {
@@ -60,7 +44,14 @@ namespace Encrypto
                     break;
             }
 
+            // Set name of Cipher on top of tabbed page 1
             Cipher_Name.Text = cipher.Name;
+
+            // Set image source of Cipher on tabbed page 2
+            Cipher_Image.Source = cipher.Image;
+
+            // Set history of Cipher on tabbed page 3
+            Cipher_History.Text = cipher.History;
         }
 
         // --------------------------------------------------------------------
@@ -158,44 +149,5 @@ namespace Encrypto
         // --------------------------------------------------------------------
         // -----------------------Tabbed Page 2--------------------------------
         // --------------------------------------------------------------------
-        protected override void OnSizeAllocated(double width, double height)
-        {
-            base.OnSizeAllocated(width, height);
-
-            // Init start position for parallax elements.
-            ParallaxLabel.TranslationX = ParalaxContainer.Width / 2
-                                         - ParallaxLabel.Width / 2;
-            ParallaxLabel.TranslationY =
-                _parallaxLabelStartY = ParalaxContainer.Height / 2
-                                       - ParallaxLabel.Height / 2;
-        }
-
-        private void ParallaxScrollViewOnScrolled(object sender, ScrolledEventArgs e)
-        {
-            ParalaxTextAnimation(e.ScrollY);
-        }
-
-        private void ParalaxTextAnimation(double scrollY)
-        {
-            ParalaxAnimation(ParallaxLabel, scrollY, _parallaxLabelStartY, 0,
-                ParalaxContainer.HeightRequest - ParallaxLabel.Height, TextSpeed);
-        }
-
-        private void ParalaxAnimation(View control,
-                                      double scrollY,
-                                      double startPosition,
-                                      double minPosition,
-                                      double maxPosition,
-                                      double speed)
-        {
-            var newPosition = startPosition + scrollY * speed;
-            if (newPosition > minPosition && newPosition < maxPosition)
-                control.TranslationY = newPosition;
-        }
-
-        private void Generate_Key_Clicked(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -12,6 +12,29 @@ namespace Encrypto.Models
             GeneratedKey = Generate_Key(message.Length);
         }
 
+        // --------------------------------------------------------------------
+        // ------------------- Accessor Methods -------------------------------
+        // --------------------------------------------------------------------
+
+        public byte[] MessageBytes { get; }
+        public byte[] GeneratedKey { get; set; }
+
+        public override string Image
+        {
+            get
+            {
+                return "vernam_cipher.png";
+            }
+        }
+
+        public override string Description => throw new NotImplementedException();
+
+        public override string History => throw new NotImplementedException();
+
+        // --------------------------------------------------------------------
+        // --------------------- Cipher Methods -------------------------------
+        // --------------------------------------------------------------------
+
         /*
          * Need to generate keyBytes randomly and it must be the same
          * length as the message to be encrypted.
@@ -58,11 +81,5 @@ namespace Encrypto.Models
             }
             return Encoding.ASCII.GetString(messageBytes);
         }
-
-        // --------------------------------------------------------------------
-        // ------------------- Accessor Methods -------------------------------
-        // --------------------------------------------------------------------
-        public byte[] MessageBytes { get; }
-        public byte[] GeneratedKey { get; set; }
     }
 }

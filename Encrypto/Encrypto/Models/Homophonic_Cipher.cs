@@ -10,6 +10,27 @@ namespace Encrypto.Models
         {
 
         }
+
+		// --------------------------------------------------------------------
+		// ------------------- Accessor Methods -------------------------------
+		// --------------------------------------------------------------------
+
+		public override string Image
+		{
+			get
+			{
+				return "homophonic_cipher.png";
+			}
+		}
+
+        public override string Description => throw new NotImplementedException();
+
+        public override string History => throw new NotImplementedException();
+
+        // --------------------------------------------------------------------
+        // --------------------- Cipher Methods -------------------------------
+        // --------------------------------------------------------------------
+
         public override string Decrypt()
         {
 			if (!Is_Key_Valid())

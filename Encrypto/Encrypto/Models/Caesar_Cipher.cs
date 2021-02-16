@@ -1,7 +1,6 @@
 ﻿using Encrypto.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Resources;
 
 namespace Encrypto
 {
@@ -11,6 +10,35 @@ namespace Encrypto
         {
             Option = option;
         }
+
+        // --------------------------------------------------------------------
+        // ------------------- Accessor Methods -------------------------------
+        // --------------------------------------------------------------------
+
+        public Cipher_Type Option { get; set; }
+
+        public override string Image
+        {
+            get
+            {
+                return (Option == Cipher_Type.Caesar) ? "caesar_cipher.png" : "double_caesar_cipher.png";
+            }
+        }
+
+        public override string Description => throw new NotImplementedException();
+
+        public override string History
+        {
+            get 
+            {
+                return "";
+            }
+        }
+
+
+        // --------------------------------------------------------------------
+        // --------------------- Cipher Methods -------------------------------
+        // --------------------------------------------------------------------
 
         // Run error checking and return decoded string.
         public override string Decrypt()
@@ -127,11 +155,6 @@ namespace Encrypto
                 }
             }
             return output;
-        }
-
-        // --------------------------------------------------------------------
-        // ------------------- Accessor Methods -------------------------------
-        // --------------------------------------------------------------------
-        public Cipher_Type Option { get; set; }
+        }   
     }
 }

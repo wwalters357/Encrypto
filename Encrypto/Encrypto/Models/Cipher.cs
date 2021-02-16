@@ -15,6 +15,26 @@ namespace Encrypto
             Name = name;
         }
 
+        // --------------------------------------------------------------------
+        // ------------------- Accessor Methods -------------------------------
+        // --------------------------------------------------------------------
+
+        public string Message { get; set; }
+
+        public string Key { get; set; }
+
+        public string Name { get; set; }
+
+        public abstract string Image { get; }
+
+        public abstract string Description { get; }
+
+        public abstract string History { get; }
+
+        // --------------------------------------------------------------------
+        // --------------------- Cipher Methods -------------------------------
+        // --------------------------------------------------------------------
+
         // Decodes ciphertext and returns plaintext.
         public abstract string Decrypt();
 
@@ -28,60 +48,6 @@ namespace Encrypto
         public virtual bool Is_Initialized()
         {
             return Message.Length > 0 && Key.Length > 0;
-        }
-
-        /* 
-         * This function which may become a class will account for all the 
-         * different methods for determining if a number is prime. Note: Not
-         * all tests are deterministic by themselves.
-         * 
-         * ex.
-         * Fermat's little theorem
-         * must satisfy x^(p-1) = 1 mod p
-         * If for some x this is true than it is pseudoprime.
-        */
-        private bool IsPrime(BigInteger x, Primality_Test option)
-        {
-            try
-            {
-                switch (option)
-                {
-                    case Primality_Test.Fermats_Little_Theorem:
-                        break;
-                    default:
-                        return Simple_Primality_Test(x);
-                }
-            }
-            catch (Exception)
-            {
-                // Maybe from time-outs because some of the methods will
-                // be computationally expensive.
-                return false;
-            }
-            return false;
-        }
-
-        enum Primality_Test
-        {
-            Fermats_Little_Theorem
-        }
-
-        // Check is any number between [2 - (number / 2)] can divide the number
-        private bool Simple_Primality_Test(BigInteger x)
-        {
-            for(int i = 2; i < BigInteger.Divide(x, 2); i++)
-            {
-                if ( BigInteger.Remainder(x, i) == 0)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private bool Fermats_Little_Theorem(BigInteger x)
-        {
-            throw new NotImplementedException();
         }
 
         // Calculate modulus division
@@ -117,12 +83,5 @@ namespace Encrypto
             }
             return -1;
         }
-
-        // --------------------------------------------------------------------
-        // ------------------- Accessor Methods -------------------------------
-        // --------------------------------------------------------------------
-        public string Message { get; set; }
-        public string Key { get; set; }
-        public string Name { get; set; }
     }
 }
