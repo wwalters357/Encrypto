@@ -25,10 +25,10 @@ namespace Encrypto.ViewModels
             switch (type)
             {
                 case Cipher_Type.Caesar:
-                    _cipher = new Caesar_Cipher("", "", type);
+                    _cipher = new Caesar_Cipher("", "");
                     break;
-                case Cipher_Type.Double_Caesar:
-                    _cipher = new Caesar_Cipher("", "", type);
+                case Cipher_Type.Vigenere:
+                    _cipher = new Vigenere_Cipher("", "");
                     break;
                 case Cipher_Type.Monoalphabetic:
                     _cipher = new Monoalphabetic_Cipher("", "");

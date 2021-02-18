@@ -60,7 +60,7 @@
                 HorizontalOptions="FillAndExpand">
                 <Picker.Items>
                     <x:String>Caesar Cipher</x:String>
-                    <x:String>Double Caesar Cipher</x:String>
+                    <x:String>Vigenere Cipher</x:String>
                     <x:String>Monoalphabetic Cipher</x:String>
                     <x:String>Homophonic Cipher</x:String>
                     <x:String>Hill Cipher</x:String>

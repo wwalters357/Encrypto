@@ -7,7 +7,7 @@ namespace Encrypto.Models
     public enum Cipher_Type
     {
         Caesar,
-        Double_Caesar,
+        Vigenere,
         Monoalphabetic,
         Homophonic,
         Hill,

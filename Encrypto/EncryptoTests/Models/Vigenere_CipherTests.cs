@@ -3,28 +3,28 @@ using Encrypto;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Encrypto.Models;
 
 namespace Encrypto.Tests
 {
     [TestClass()]
-    public class Caesar_CipherTests
+    public class Vigenere_CipherTests
     {
         [TestMethod()]
-        public void Caesar_CipherTest()
+        public void Vigenere_CipherTest()
         {
-            Cipher cipher = new Caesar_Cipher("Hello World", "13");
+            Cipher cipher = new Vigenere_Cipher("hello you", "dog");
             Assert.IsNotNull(cipher);
             cipher = null;
             Assert.IsNull(cipher);
+            
         }
 
         [TestMethod()]
         public void DecryptTest()
         {
-            // Testing Caesar Cipher
-            string expected = "Hello World";
-            Cipher cipher = new Caesar_Cipher("Uryyb Jbeyq", "13");
+            // Testing Vigenere Cipher
+            string expected = "hello you";
+            Cipher cipher = new Vigenere_Cipher("ksroc eri", "dog");
             string result = cipher.Decrypt();
             Assert.AreEqual(expected, result);
         }
@@ -32,9 +32,9 @@ namespace Encrypto.Tests
         [TestMethod()]
         public void EncryptTest()
         {
-            // Testing Caesar Cipher
-            string actual = "Uryyb Jbeyq";
-            Cipher cipher = new Caesar_Cipher("Hello World", "13");     
+            // Testing Vigenere Cipher
+            string actual = "ksroc eri";
+            Cipher cipher = new Vigenere_Cipher("hello you", "dog");
             string expected = cipher.Encrypt();
             Assert.AreEqual(expected, actual);
         }
@@ -42,7 +42,7 @@ namespace Encrypto.Tests
         [TestMethod()]
         public void Is_Key_ValidTest()
         {
-            Cipher cipher = new Caesar_Cipher("Hello World", "dog");
+            Cipher cipher = new Vigenere_Cipher("Hello World", "13");
             Assert.IsFalse(cipher.Is_Key_Valid());
         }
     }

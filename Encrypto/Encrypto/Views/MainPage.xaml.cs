@@ -41,7 +41,7 @@ namespace Encrypto
                     type = Cipher_Type.Caesar;
                     break;
                 case "Double Caesar Cipher":
-                    type = Cipher_Type.Double_Caesar;
+                    type = Cipher_Type.Vigenere;
                     break;
                 case "Monoalphabetic Cipher":
                     type = Cipher_Type.Monoalphabetic;

@@ -95,7 +95,7 @@
     <AndroidResource Include="Resources\drawable\vernam_cipher.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\double_caesar_cipher.png" />
+    <AndroidResource Include="Resources\drawable\vigenere_caesar_cipher.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\hill_cipher_part_1.png" />
