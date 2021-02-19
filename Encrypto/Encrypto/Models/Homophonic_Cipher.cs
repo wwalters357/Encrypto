@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Encrypto.Models
 {
-    class Homophonic_Cipher : Cipher
+    public class Homophonic_Cipher : Cipher
     {
         public Homophonic_Cipher(string message, string key) : base(message, key, "Homophonic Cipher")
         {
@@ -23,9 +23,41 @@ namespace Encrypto.Models
 			}
 		}
 
-        public override string Description => throw new NotImplementedException();
+        public override string Description => "Replaces each letter with associated 2-digit number.";
 
-        public override string History => throw new NotImplementedException();
+        public override string History
+		{
+            get
+            {
+				return "An early attempt to increase the difficulty of frequency analysis attacks on substitution" +
+					" ciphers was to disguise plaintext letter frequencies by homophony.In these ciphers, plaintext" +
+					" letters map to more than one ciphertext symbol.Usually, the highest-frequency plaintext symbols" +
+					" are given more equivalents than lower frequency letters. In this way, the frequency distribution" +
+					" is flattened, making analysis more difficult.Since more than 26 characters will be required in" +
+					" the ciphertext alphabet, various solutions are employed to invent larger alphabets. Perhaps the" +
+					" simplest is to use a numeric substitution 'alphabet'.Another method consists of simple variations" +
+					" on the existing alphabet; uppercase, lowercase, upside down, etc. More artistically, though not" +
+					" necessarily more securely, some homophonic ciphers employed wholly invented alphabets of fanciful" +
+					" symbols.The Beale ciphers are another example of a homophonic cipher. This is a story of buried" +
+					" treasure that was described in 1819–21 by use of a ciphered text that was keyed to the Declaration" +
+					" of Independence. Here each ciphertext character was represented by a number.The number was determined" +
+					" by taking the plaintext character and finding a word in the Declaration of Independence that started" +
+					" with that character and using the numerical position of that word in the Declaration of" +
+					" Independence as the encrypted form of that letter.Since many words in the Declaration of Independence" +
+					" start with the same letter, the encryption of that character could be any of the numbers associated" +
+					" with the words in the Declaration of Independence that start with that letter.Deciphering the" +
+					" encrypted text character X(which is a number) is as simple as looking up the Xth word of the" +
+					" Declaration of Independence and using the first letter of that word as the decrypted character." +
+					"Another homophonic cipher was described by Stahl[2][3] and was one of the first[citation needed]" +
+					" attempts to provide for computer security of data systems in computers through encryption.Stahl" +
+					" constructed the cipher in such a way that the number of homophones for a given character was in" +
+					" proportion to the frequency of the character, thus making frequency analysis much more difficult" +
+					".The book cipher and straddling checkerboard are types of homophonic cipher.Francesco I Gonzaga," +
+					" Duke of Mantua, used the earliest known example of a homophonic substitution cipher in 1401 for" +
+					" correspondence with one Simone de Crema.";
+
+			}
+		}
 
         // --------------------------------------------------------------------
         // --------------------- Cipher Methods -------------------------------

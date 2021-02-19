@@ -12,19 +12,28 @@ namespace Encrypto.Tests
         [TestMethod()]
         public void Monoalphabetic_CipherTest()
         {
-            Assert.Fail();
+            Cipher cipher = new Monoalphabetic_Cipher("hello world", "QWERTYUIOPLKJHGFDSAZXCVBNM");
+            Assert.IsNotNull(cipher);
+            cipher = null;
+            Assert.IsNull(cipher);
         }
 
         [TestMethod()]
         public void DecryptTest()
         {
-            Assert.Fail();
+            Cipher cipher = new Monoalphabetic_Cipher("KGGL VIQZ NGX'CT RGHT", "QWERTYUIOPLKJHGFDSAZXCVBNM");
+            string expected = cipher.Decrypt();
+            string actual = "Look what you've done";
+            Assert.AreEqual(expected, actual, true);
         }
 
         [TestMethod()]
         public void EncryptTest()
         {
-            Assert.Fail();
+            Cipher cipher = new Monoalphabetic_Cipher("Look what you've done", "QWERTYUIOPLKJHGFDSAZXCVBNM");
+            string expected = cipher.Encrypt();
+            string actual = "KGGL VIQZ NGX'CT RGHT";
+            Assert.AreEqual(expected, actual, true);
         }
 
         [TestMethod()]

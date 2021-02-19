@@ -23,9 +23,9 @@ namespace Encrypto.Models
             }
         }
 
-        public override string Description => throw new NotImplementedException();
+        public override string Description => "Uses Matrix multiplication to convert each byte and shift its' location.";
 
-        public override string History => throw new NotImplementedException();
+        public override string History => "Created at some point for a good reason.";
 
         // --------------------------------------------------------------------
         // --------------------- Cipher Methods -------------------------------
@@ -71,7 +71,7 @@ namespace Encrypto.Models
         {
 			string output = "";
 			int n = (int)Math.Sqrt(key.Length);
-			var keyMatrix = Matrix<Single>.Build.Dense(n, n);
+			DenseMatrix keyMatrix = new DenseMatrix(n, n);
 
 			// Fill key matrix with values
 			for (int i = 0; i < n; i++)
@@ -89,7 +89,7 @@ namespace Encrypto.Models
 
 			if (!encryptMessage)
 			{
-				keyMatrix = keyMatrix.Inverse();
+				keyMatrix = (DenseMatrix)keyMatrix.Inverse();
 			}
 
 			string plainText = "";
@@ -100,13 +100,13 @@ namespace Encrypto.Models
 					plainText += c;
 				}
 			}
+			int length = plainText.Length;
 
 			// Check length of input message 
 			int mod = Mod(plainText.Length, n);
 			while (mod != 0)
 			{
-				Random rand = new Random();
-				plainText += (char)(rand.Next(0, 26) + (int)'A');
+				plainText += 'A';
 				mod--;
 			}
 
@@ -114,29 +114,28 @@ namespace Encrypto.Models
 			{
 				// Break up string into groups of n
 				string strGroup = plainText.Substring(i, n);
-				int[] vector = new int[n];
+				DenseVector vector = new DenseVector(n);
 				for (int j = 0; j < n; j++)
 				{
 					vector[j] = Get_Alphabetic_Value(strGroup[j]);
 				}
 
 				// Multiply matrices
+				vector = (DenseVector)keyMatrix.Multiply(vector);
+
+				// Add newly calculated letters to output
 				for (int j = 0; j < n; j++)
-				{
-					int sum = 0;
-					for (int k = 0; k < n; k++)
-					{
-						sum += (int)(keyMatrix[j, k] * vector[k]);
-					}
-					output += (char)(Mod(sum, 26) + (int)'A');
-				}
+                {
+					int x = (int)Math.Round(vector[j].Real);
+					output += (char)(Mod(x, 26) + (int)'A');
+                }
 			}
-			return output;
+			return (output.Length <= length) ? output : output.Substring(0, length);
 		}
 
-		private bool Is_Invertible(Matrix<Single> matrix, int modBase)
+		private bool Is_Invertible(DenseMatrix matrix, int modBase)
 		{
-			int determinant = (int)matrix.Determinant();
+			int determinant = (int)Math.Round(matrix.Determinant().Real);
 			if (determinant % 1 != 0)
 			{
 				return false;

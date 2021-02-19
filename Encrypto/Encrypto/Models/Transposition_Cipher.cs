@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Encrypto.Models
 {
-    class Transposition_Cipher : Cipher
+    public class Transposition_Cipher : Cipher
     {
         public Transposition_Cipher(string message, string key) : base(message, key, "Transposition Cipher")
         {

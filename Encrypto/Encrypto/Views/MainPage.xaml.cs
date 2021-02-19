@@ -40,7 +40,7 @@ namespace Encrypto
                 case "Caesar Cipher":
                     type = Cipher_Type.Caesar;
                     break;
-                case "Double Caesar Cipher":
+                case "Vigenere Cipher":
                     type = Cipher_Type.Vigenere;
                     break;
                 case "Monoalphabetic Cipher":

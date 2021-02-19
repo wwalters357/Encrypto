@@ -24,9 +24,24 @@ namespace Encrypto
 			}
 		}
 
-        public override string Description => throw new NotImplementedException();
+        public override string Description => "Swaps each letter with another from parallel alphabet.";
 
-        public override string History => throw new NotImplementedException();
+        public override string History
+		{
+            get
+            {
+				return "One of the earliest recorded substitution ciphers, the Atbash cipher imposed monoalphabetic" +
+					" substitutions on the Hebrew alphabet. It was a simple system in which every passage of plaintext" +
+					" that was encoded used the same ciphertext alphabet.The Atbash cipher created its ciphertext" +
+					" alphabet by simply reversing the plaintext alphabet, mapping the first letter of the standard" +
+					" alphabet to the last, the second to the second last, and so on . The system derived its name" +
+					" phonetically from its substitution of the Hebrew “aleph” with its cipher form of “tav” and “beth”" +
+					" with “shin”.Naturally, the method may be applied to any language alphabet, and is a quick and" +
+					" easy tool for cloaking messages of non - critical importance from the eyes of casual observers." +
+					"An element of additional security may be applied to the technique by tagging a string of numbers," +
+					" symbols or punctuation marks to the end of the ciphertext alphabet before performing the substitutions.";
+            }
+		}
 
         // --------------------------------------------------------------------
         // --------------------- Cipher Methods -------------------------------

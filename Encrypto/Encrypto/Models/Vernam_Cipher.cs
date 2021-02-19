@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Encrypto.Models
 {
-    class Vernam_Cipher : Cipher
+    public class Vernam_Cipher : Cipher
     {
         public Vernam_Cipher(string message) : base(message, "", "Vernam Cipher")
         {
@@ -27,9 +27,22 @@ namespace Encrypto.Models
             }
         }
 
-        public override string Description => throw new NotImplementedException();
+        public override string Description => "Shifts each byte by a randomly generated one time use number.";
 
-        public override string History => throw new NotImplementedException();
+        public override string History
+        {
+            get
+            {
+                return "The combining function Vernam specified in U.S. Patent 1,310,719, issued July 22, 1919," +
+                    " is the XOR operation, applied to the individual impulses or bits used to encode the characters" +
+                    " in the Baudot code. Vernam did not use the term \"XOR\" in the patent, but he implemented that" +
+                    " operation in relay logic. In the example Vernam gave, the plaintext is A, encoded as \"++-- - \"" +
+                    " in Baudot, and the key character is B, encoded as \" + --++\". The resulting ciphertext will be" +
+                    " \" - +-++\", which encodes a G. Combining the G with the key character B at the receiving end produces" +
+                    " \"++-- - \", which is the original plaintext A. The NSA has called this patent \"perhaps one of the most" +
+                    " important in the history of cryptography.\".[1]";
+            }
+        }
 
         // --------------------------------------------------------------------
         // --------------------- Cipher Methods -------------------------------

@@ -12,12 +12,24 @@ namespace Encrypto.Models.Tests
         [TestMethod()]
         public void Hill_CipherTest()
         {
-            Cipher cipher = new Hill_Cipher("DCODEZ", "CDFH");
+            string msg = "HELLOWORLD";
+            Cipher cipher = new Hill_Cipher(msg, "CDFH");
             Assert.IsNotNull(cipher);
             cipher = null;
             Assert.IsNull(cipher);
-            cipher = new Hill_Cipher("DCODEZ", "CDFH");
+            cipher = new Hill_Cipher(msg, "CDFH");
             Assert.IsNotNull(cipher);
+
+            // Check conversion with 2x2 matrix
+            cipher.Message = cipher.Encrypt();
+            string expected = cipher.Decrypt();
+            Assert.AreEqual(expected, msg, true);
+
+            // Check conversion with 3x3 matrix
+            cipher = new Hill_Cipher(msg, "CBBDCBCBC");
+            cipher.Message = cipher.Encrypt();
+            expected = cipher.Decrypt();
+            Assert.AreEqual(expected, msg, true);
         }
 
         [TestMethod()]

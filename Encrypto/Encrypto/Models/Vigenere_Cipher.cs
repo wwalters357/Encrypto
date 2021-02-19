@@ -17,9 +17,23 @@ namespace Encrypto
 
         public override string Image => "vigenere_cipher.png";
 
-        public override string Description => throw new NotImplementedException();
+        public override string Description => "Repeats key for length of message and shift each letter by the current key.";
 
-        public override string History => throw new NotImplementedException();
+        public override string History
+        {
+            get
+            {
+                return "Vigenère cipher, type of substitution cipher invented by the 16th - century French" +
+                    " cryptographer Blaise de Vigenère and used for data encryption in which the original plaintext" +
+                    " structure is somewhat concealed in the ciphertext by using several different monoalphabetic" +
+                    " substitution ciphers rather than just one; the code key specifies which particular substitution" +
+                    " is to be employed for encrypting each plaintext symbol.Such resulting ciphers, known" +
+                    " generically as polyalphabetics, have a long history of usage.The systems differ mainly in the" +
+                    " way in which the key is used to choose among the collection of monoalphabetic substitution rules.";
+
+
+            }
+        }
 
 
         // --------------------------------------------------------------------

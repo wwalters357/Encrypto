@@ -15,8 +15,7 @@ namespace Encrypto.Tests
             Cipher cipher = new Vigenere_Cipher("hello you", "dog");
             Assert.IsNotNull(cipher);
             cipher = null;
-            Assert.IsNull(cipher);
-            
+            Assert.IsNull(cipher);            
         }
 
         [TestMethod()]

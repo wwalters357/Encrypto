@@ -80,24 +80,35 @@
     <ContentPage Title="How it Works"
                  BackgroundColor="GhostWhite">
 
-        <StackLayout>
+        <ScrollView VerticalOptions="FillAndExpand">
+            
+            <StackLayout>
 
-            <Image x:Name="Cipher_Image"
-                       Source="{Binding Image}"
-                       Aspect="AspectFit"
-                       HorizontalOptions="FillAndExpand"
-                       VerticalOptions="Start" />
+                <StackLayout BackgroundColor="Black">
+                    
+                    <Image x:Name="Cipher_Image"
+                           Source="{Binding Image}"
+                           Aspect="AspectFit"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start" />
 
-            <ScrollView VerticalOptions="FillAndExpand">
+                    <Image x:Name="Cipher_Image_2"
+                           Source="hill_cipher_part_2.png"
+                           Aspect="AspectFit"
+                           IsVisible="False"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Start" />
+                    
+                </StackLayout>
 
                 <Label x:Name="Cipher_Description"
                        Text="{Binding Description}"
                        FontSize="20"
                        Margin="20" />
 
-            </ScrollView>
-
-        </StackLayout>
+            </StackLayout>
+            
+        </ScrollView>
 
     </ContentPage>
 

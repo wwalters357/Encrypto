@@ -14,7 +14,7 @@ namespace Encrypto
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TabbedPage1 : TabbedPage
     {
-        private CipherViewModel cipher = null;
+        private static CipherViewModel cipher = null;
 
         public TabbedPage1(Cipher_Type cipherType)
         {
@@ -24,6 +24,22 @@ namespace Encrypto
 
             // Bind Cipher ViewModel object to tabbed page
             this.BindingContext = cipher;
+
+            // Set keyboard input type based on Cipher
+            if (cipher.Type == Cipher_Type.Caesar)
+            {
+                Input_Key.Keyboard = Keyboard.Numeric;
+            }
+            else
+            {
+                Input_Key.Keyboard = Keyboard.Default;
+            }
+
+            // Hill Cipher needs two images
+            if (cipher.Type == Cipher_Type.Hill)
+            {
+                Cipher_Image_2.IsVisible = true;
+            }
         }
 
         // --------------------------------------------------------------------

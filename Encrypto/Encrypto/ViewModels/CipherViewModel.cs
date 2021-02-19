@@ -10,8 +10,6 @@ namespace Encrypto.ViewModels
     {
         Cipher _cipher;
 
-        Cipher_Type Type;
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected void NotifyPropertyChanged(string propertyName)
         {
@@ -46,6 +44,8 @@ namespace Encrypto.ViewModels
                     break;
             }
         }
+
+        public Cipher_Type Type { get; }
 
         public string Message
         {
