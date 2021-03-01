@@ -26,7 +26,8 @@ namespace Encrypto.Models.Tests
             Assert.AreEqual(expected, msg, true);
 
             // Check conversion with 3x3 matrix
-            cipher = new Hill_Cipher(msg, "CBBDCBCBC");
+            msg = "ACT";
+            cipher = new Hill_Cipher(msg, "GYBNQKURP");
             cipher.Message = cipher.Encrypt();
             expected = cipher.Decrypt();
             Assert.AreEqual(expected, msg, true);

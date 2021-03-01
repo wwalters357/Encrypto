@@ -37,7 +37,10 @@ namespace Encrypto.Models
 			{
 				throw new Exception("Invalid Key");
 			}
-			return Hill_Substitution(Message, Key, false);
+			int n = (int)Math.Sqrt(Key.Length);
+			int[,] keyMatrix = Generate_KeyMatrix(n);
+			
+			return Hill_Substitution(Message, keyMatrix, false);
 		}
 
         public override string Encrypt()
@@ -46,7 +49,9 @@ namespace Encrypto.Models
 			{
 				throw new Exception("Invalid Key");
 			}
-			return Hill_Substitution(Message, Key, true);
+			int n = (int)Math.Sqrt(Key.Length);
+			int[,] keyMatrix = Generate_KeyMatrix(n);
+			return Hill_Substitution(Message, keyMatrix, true);
 		}
 
 		// Must be either 4 or 9 letters
@@ -67,20 +72,37 @@ namespace Encrypto.Models
 			return true;
         }
 
-        private string Hill_Substitution(string input, string key, bool encryptMessage)
+		private int[,] Generate_KeyMatrix(int n)
         {
-			string output = "";
-			int n = (int)Math.Sqrt(key.Length);
-			DenseMatrix keyMatrix = new DenseMatrix(n, n);
-
+			int[,] keyMatrix = new int[n,n];
 			// Fill key matrix with values
 			for (int i = 0; i < n; i++)
 			{
 				for (int j = 0; j < n; j++)
 				{
-					keyMatrix[i, j] = Get_Alphabetic_Value(key[i * 2 + j]);
+					keyMatrix[i, j] = Get_Alphabetic_Value(Key[i * 2 + j]);
 				}
 			}
+			return keyMatrix;
+        }
+
+		private bool Is_Invertible(int[,] m)
+        {
+			return true;
+        }
+
+		private int[,] Inverse(int[,] m)
+        {
+
+        }
+
+        private string Hill_Substitution(string input, int[,] keyMatrix, bool encryptMessage)
+        {
+			string output = "";
+			int n = (int)Math.Sqrt(key.Length);
+			DenseMatrix keyMatrix = new DenseMatrix(n, n);
+
+			
 
 			if (!Is_Invertible(keyMatrix, 26))
 			{
