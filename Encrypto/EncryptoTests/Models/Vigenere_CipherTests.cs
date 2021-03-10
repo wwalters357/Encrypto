@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Encrypto.Tests
+namespace Encrypto.Models.Tests
 {
     [TestClass()]
     public class Vigenere_CipherTests

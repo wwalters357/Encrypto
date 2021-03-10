@@ -27,6 +27,8 @@ namespace Encrypto.Models
 
         public override string History => "Created at some point for a good reason.";
 
+        public Matrix KeyMatrix { get; private set; }
+
         // --------------------------------------------------------------------
         // --------------------- Cipher Methods -------------------------------
         // --------------------------------------------------------------------
@@ -37,10 +39,8 @@ namespace Encrypto.Models
 			{
 				throw new Exception("Invalid Key");
 			}
-			int n = (int)Math.Sqrt(Key.Length);
-			int[,] keyMatrix = Generate_KeyMatrix(n);
-			
-			return Hill_Substitution(Message, keyMatrix, false);
+			KeyMatrix.Inverse();
+			return Hill_Substitution(Message);
 		}
 
         public override string Encrypt()
@@ -48,10 +48,8 @@ namespace Encrypto.Models
 			if (!Is_Key_Valid())
 			{
 				throw new Exception("Invalid Key");
-			}
-			int n = (int)Math.Sqrt(Key.Length);
-			int[,] keyMatrix = Generate_KeyMatrix(n);
-			return Hill_Substitution(Message, keyMatrix, true);
+			}			
+			return Hill_Substitution(Message);
 		}
 
 		// Must be either 4 or 9 letters
@@ -69,11 +67,13 @@ namespace Encrypto.Models
 					return false;
 				}
 			}
-			return true;
+            KeyMatrix = new Matrix(Generate_KeyMatrix());
+			return KeyMatrix.Is_Invertible();
         }
 
-		private int[,] Generate_KeyMatrix(int n)
+		private int[,] Generate_KeyMatrix()
         {
+			int n = (int)Math.Sqrt(Key.Length);
 			int[,] keyMatrix = new int[n,n];
 			// Fill key matrix with values
 			for (int i = 0; i < n; i++)
@@ -86,13 +86,13 @@ namespace Encrypto.Models
 			return keyMatrix;
         }
 
-        private string Hill_Substitution(string input, int[,] keyMatrix, bool encryptMessage)
+        private string Hill_Substitution(string input)
         {
 			string output = "";
-			int n = keyMatrix.GetLength(0);
 			string plainText = "";
+			int n = KeyMatrix.Length;
 
-			// Extend plaintext
+			// Create plaintext with only letters
 			foreach (char c in input)
 			{
 				if (Char.IsLetter(c))
@@ -114,20 +114,19 @@ namespace Encrypto.Models
 			{
 				// Break up string into groups of n
 				string strGroup = plainText.Substring(i, n);
-				DenseVector vector = new DenseVector(n);
+				Matrix vector = new Matrix(3, 1);
 				for (int j = 0; j < n; j++)
 				{
-					vector[j] = Get_Alphabetic_Value(strGroup[j]);
+					vector.Data[j, 1] = Get_Alphabetic_Value(strGroup[j]);
 				}
 
 				// Multiply matrices
-				vector = (DenseVector)keyMatrix.Multiply(vector);
+				vector *= KeyMatrix;
 
 				// Add newly calculated letters to output
 				for (int j = 0; j < n; j++)
                 {
-					int x = (int)Math.Round(vector[j].Real);
-					output += (char)(Mod(x, 26) + (int)'A');
+					output += (char)(Mod(vector.Data[j, 0], 26) + (int)'A');
                 }
 			}
 			return (output.Length <= length) ? output : output.Substring(0, length);

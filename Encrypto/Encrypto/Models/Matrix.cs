@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Encrypto.Models
 {
-    class Matrix
+    public class Matrix
     {
         // --------------------------------------------------------------------
         // ------------------- Defined Cosntants ------------------------------
@@ -53,7 +53,7 @@ namespace Encrypto.Models
         // Initialize Vector
         public Matrix(int a, int b, int c)
         {
-            Data = new int[,] { { a, b, c } };
+            Data = new int[,] { { a }, { b }, { c } };
         }
 
         // --------------------------------------------------------------------
@@ -63,12 +63,13 @@ namespace Encrypto.Models
         public int[,] Data { get; }
 
         public int Length { get =>  Data.GetLength(0); }
+        public int Calculated_Determinant { get; private set; }
 
         // --------------------------------------------------------------------
         // --------------------- Matrix Methods -------------------------------
         // --------------------------------------------------------------------
 
-        private int Determinant()
+        public int Determinant()
         {
             int calculate(int a, int b, int c, int d) => a * d - b * c;
 
@@ -110,7 +111,7 @@ namespace Encrypto.Models
         }
 
         // Calculate GCD using Euler's algorithm 
-        protected int GCD(int x, int y)
+        public int GCD(int x, int y)
         {
             if (x == 0)
             {
@@ -119,29 +120,39 @@ namespace Encrypto.Models
             return GCD(y % x, x);
         }
 
-        private int[,] Inverse(int[,] m)
+        public void Inverse()
         {
-            int det = Determinant();
-            if (Is_Invertible())
+            for (int i = 0; i < Data.GetLength(0); i++)
             {
-                return null;
-            }
-            for (int i = 0; i < m.GetLength(0); i++)
-            {
-                for (int j = 0; j < m.GetLength(1); j++)
+                for (int j = 0; j < Data.GetLength(1); j++)
                 {
-                    m[i, j] /= det;
+                    Data[i, j] = (int)(Data[i, j] / Calculated_Determinant);
                 }
             }
-            return m;
         }
 
         // Check determinant doesn't equal 0 and no common factors with 26
         // Matrix has an inverse if and only if the determinant doesn't equal zero.
-        private bool Is_Invertible()
+        public bool Is_Invertible()
         {
-            int det = Determinant();
-            return !(det == 0 || GCD(det, 26) != 1);
+            Calculated_Determinant = Determinant();
+            return !(Calculated_Determinant == 0 || GCD(Calculated_Determinant, 26) != 1);
+        }
+
+        // Designed for Matrix x Vector only.
+        public static Matrix operator *(Matrix A, Matrix B)
+        {
+            Matrix result = new Matrix(0, 0, 0);
+            for (int i = 0; i < A.Length; i++)
+            {
+                int sum = 0;
+                for (int j = 0; j < B.Length; j++)
+                {
+                    sum += A.Data[j, i] * B.Data[j,0];
+                }
+                result.Data[i, 0] = sum;
+            }
+            return result;
         }
     }
 }

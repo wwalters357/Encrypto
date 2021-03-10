@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Encrypto.Models;
 
-namespace Encrypto.Tests
+namespace Encrypto.Models.Tests
 {
     [TestClass()]
     public class Caesar_CipherTests
