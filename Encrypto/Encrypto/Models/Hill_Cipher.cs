@@ -86,35 +86,13 @@ namespace Encrypto.Models
 			return keyMatrix;
         }
 
-		private bool Is_Invertible(int[,] m)
-        {
-			return true;
-        }
-
-		private int[,] Inverse(int[,] m)
-        {
-
-        }
-
         private string Hill_Substitution(string input, int[,] keyMatrix, bool encryptMessage)
         {
 			string output = "";
-			int n = (int)Math.Sqrt(key.Length);
-			DenseMatrix keyMatrix = new DenseMatrix(n, n);
-
-			
-
-			if (!Is_Invertible(keyMatrix, 26))
-			{
-				throw new Exception("Invalid key, matrix is not invertible!");
-			}
-
-			if (!encryptMessage)
-			{
-				keyMatrix = (DenseMatrix)keyMatrix.Inverse();
-			}
-
+			int n = keyMatrix.GetLength(0);
 			string plainText = "";
+
+			// Extend plaintext
 			foreach (char c in input)
 			{
 				if (Char.IsLetter(c))
@@ -153,21 +131,6 @@ namespace Encrypto.Models
                 }
 			}
 			return (output.Length <= length) ? output : output.Substring(0, length);
-		}
-
-		private bool Is_Invertible(DenseMatrix matrix, int modBase)
-		{
-			int determinant = (int)Math.Round(matrix.Determinant().Real);
-			if (determinant % 1 != 0)
-			{
-				return false;
-			}
-			// Check if determinant is Co-Prime with base number
-			if (GCD(Math.Abs(determinant), modBase) == 1)
-			{
-				return true;
-			}
-			return false;
 		}
     }
 }

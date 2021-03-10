@@ -57,16 +57,6 @@ namespace Encrypto
             return (x < 0) ? r + b : r;
         }
 
-        // Calculate GCD using Euler's algorithm 
-        protected int GCD(int x, int y)
-        {
-            if (x == 0)
-            {
-                return y;
-            }
-            return GCD(y % x, x);
-        }
-
         // If the character is a letter it return A,a=>0 ... Z,z=>25
         protected int Get_Alphabetic_Value(char c)
         {
