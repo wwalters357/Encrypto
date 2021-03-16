@@ -11,6 +11,7 @@ namespace Encrypto.Models
         Monoalphabetic,
         Homophonic,
         Hill,
-        Vernam
+        Vernam,
+        Transposition
     }
 }

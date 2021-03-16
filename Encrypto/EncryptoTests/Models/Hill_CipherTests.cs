@@ -26,11 +26,12 @@ namespace Encrypto.Models.Tests
             Assert.AreEqual(expected, msg, true);
 
             // Check conversion with 3x3 matrix
-            msg = "ACT";
-            cipher = new Hill_Cipher(msg, "GYBNQKURP");
+            msg = "Hello Will the hill cipher now works!";
+            cipher = new Hill_Cipher(msg, "BAAABAAAB");
             cipher.Message = cipher.Encrypt();
-            expected = cipher.Decrypt();
-            Assert.AreEqual(expected, msg, true);
+            string actual = cipher.Decrypt();
+            expected = "hellowillthehillciphernowworks";
+            Assert.AreEqual(expected, actual, true);
         }
 
         [TestMethod()]
@@ -45,10 +46,17 @@ namespace Encrypto.Models.Tests
         [TestMethod()]
         public void EncryptTest()
         {
+            // Testing 2x2 matrix
             Cipher cipher = new Hill_Cipher("DCODEZ", "CDFH");
             string expected = cipher.Encrypt();
-            string actual = "MDLNFN";
+            string actual = "MDLNFN"; 
             Assert.AreEqual(expected, actual);
+
+            // Testing 3x3 matrix
+            cipher = new Hill_Cipher("ACT", "GYBNQKURP");
+            actual = cipher.Encrypt();
+            expected = "POH";
+            Assert.AreEqual(expected, actual);  
         }
 
         [TestMethod()]
@@ -59,7 +67,7 @@ namespace Encrypto.Models.Tests
             Assert.IsTrue(cipher.Is_Key_Valid());
 
             // 3x3 Matrix
-            cipher = new Hill_Cipher("DCODEZ", "ABCDEFGHI");
+            cipher = new Hill_Cipher("DCODEZ", "GYBNQKURP");
             Assert.IsTrue(cipher.Is_Key_Valid());
 
             // False
