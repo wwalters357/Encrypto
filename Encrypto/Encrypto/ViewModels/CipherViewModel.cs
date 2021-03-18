@@ -8,10 +8,12 @@ namespace Encrypto.ViewModels
 {
     public class CipherViewModel : INotifyPropertyChanged
     {
-        Cipher _cipher;
+        private static Cipher _cipher;
+
+        private bool _isBusy;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void NotifyPropertyChanged(string propertyName)
+        protected virtual void NotifyPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -64,6 +66,16 @@ namespace Encrypto.ViewModels
             {
                 _cipher.Key = value;
                 NotifyPropertyChanged("Key");
+            }
+        }
+
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            { 
+                _isBusy = value;
+                NotifyPropertyChanged("Loading");
             }
         }
 

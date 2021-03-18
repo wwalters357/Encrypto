@@ -25,6 +25,9 @@ namespace Encrypto
             // Bind Cipher ViewModel object to tabbed page
             this.BindingContext = cipher;
 
+            // Set IsBusy to false on inital page load.
+            cipher.IsBusy = false;
+
             // Set keyboard input type based on Cipher
             if (cipher.Type == Cipher_Type.Caesar)
             {
@@ -45,7 +48,7 @@ namespace Encrypto
         // --------------------------------------------------------------------
         // -----------------------Tabbed Page 1--------------------------------
         // --------------------------------------------------------------------
-        
+
         // Navigation back button to return to the home page.
         private async void NavigateButton_OnClicked(object sender, EventArgs e)
         {
@@ -80,27 +83,35 @@ namespace Encrypto
             {
                 cipher.Key = text;
             }
+            IsBusy = true;
         }
 
         // Parse plaintext and output converted ciphertext.
         private async void Encryption_OnClicked(object sender, EventArgs e)
         {
+            
             if (cipher.Is_Initialized)
             {
                 try
                 {
+                    // Activate loading indicator
+                    Loading();
+
                     // This line will yield control to the UI while Encrypt()
                     // performs its work. The UI thread is free to perform other work.
-                    Result_Message.Text = await Task.Run(() => cipher.Encrypt);
+                    Result_Message.Text = await Task.Run(() => cipher.Encrypt);             
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     Result_Message.Text = "Invalid Key Entered";
                 }
+
+                // Disable loading indicator
+                Loading();
             }
             else
             {
-                Result_Message.Text = "Invalid Cipher cannot encrypt!";
+                Result_Message.Text = "Invalid Cipher cannot encrypted!";
             }
         }
 
@@ -111,18 +122,24 @@ namespace Encrypto
             {
                 try
                 {
+                    // Activate loading indicator
+                    Loading();
+
                     // This line will yield control to the UI while Decrypt()
                     // performs its work. The UI thread is free to perform other work.
                     Result_Message.Text = await Task.Run(() => cipher.Decrypt);
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     Result_Message.Text = "Invalid Key Entered";
                 }
+
+                // Disable loading indicator
+                Loading();
             }
             else
             {
-                Result_Message.Text = "Invalid Cipher cannot decrypt!";
+                Result_Message.Text = "Invalid Cipher cannot decrypted!";
             }
         }
 
@@ -132,6 +149,15 @@ namespace Encrypto
             string temp = Input_Text.Text;
             Input_Text.Text = Result_Message.Text;
             Result_Message.Text = temp;
+        }
+
+        private void Loading()
+        {
+            bool load = !cipher.IsBusy;
+            Loader.IsEnabled = load;
+            Loader.IsRunning = load;
+            Loader.IsVisible = load;
+            cipher.IsBusy    = load;
         }
 
         // --------------------------------------------------------------------

@@ -66,12 +66,14 @@
             </StackLayout>
 
             <Label x:Name="Result_Message" 
-                   WidthRequest="200" 
+                   WidthRequest="400" 
                    HeightRequest="200" 
                    FontSize="24"
                    BackgroundColor="DarkGray"
                    Text="Result of encode/decode">
             </Label>
+
+            <ActivityIndicator x:Name="Loader" IsEnabled="{Binding IsBusy}" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
 
         </StackLayout>
 
