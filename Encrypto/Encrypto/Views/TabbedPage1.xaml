@@ -6,7 +6,7 @@
             mc:Ignorable="d"
             x:Class="Encrypto.TabbedPage1">
     <!--Pages can be added as references or inline-->
-    <ContentPage Title="Encode Decode" BackgroundColor="LightGray">
+    <ContentPage Title="Encode Decode" BackgroundColor="DarkGray">
 
         <StackLayout>
 
@@ -14,13 +14,14 @@
                    Text="{Binding Name}"
                    FontSize="30"
                    VerticalOptions="Start"
-                   HorizontalOptions="Center"></Label>
+                   HorizontalOptions="Center">
+            </Label>
 
             <Editor x:Name="Input_Text"
                     ClassId="Input_Text"
                     Placeholder="Enter message here:"
                     FontSize="24"
-                    BackgroundColor="DarkGray"   
+                    BackgroundColor="LightGray"   
                     IsVisible="True"
                     WidthRequest="200" 
                     HeightRequest="200"
@@ -32,7 +33,7 @@
                     ClassId="Input_Key"
                     Placeholder="Enter key here:"
                     FontSize="24"
-                    BackgroundColor="DarkGray"       
+                    BackgroundColor="LightGray"       
                     WidthRequest="200"
                     TextChanged="OnEntryTextChanged"
                     Completed="OnEntryCompleted">
@@ -41,27 +42,28 @@
             <StackLayout Orientation="Horizontal">
 
                 <Button Text="Encode"
-                        TextColor="White"
                         WidthRequest="150"
                         CornerRadius="20"
                         HorizontalOptions="Start"
-                        BackgroundColor="Black"
-                        Clicked="Encryption_OnClicked"></Button>
+                        BackgroundColor="AliceBlue"
+                        Clicked="Encryption_OnClicked">
+                </Button>
 
                 <Button Text="Decode"
-                        TextColor="White"
                         WidthRequest="150"
                         CornerRadius="20"
                         HorizontalOptions="Start"
-                        BackgroundColor="Black"
-                        Clicked="Decryption_OnClicked"></Button>
+                        BackgroundColor="AliceBlue"
+                        Clicked="Decryption_OnClicked">
+                </Button>
 
                 <Button Text="Switch"
-                        TextColor="White"
+                        
                         CornerRadius="20"
                         HorizontalOptions="End"
-                        BackgroundColor="Black"
-                        Clicked="SwitchText_OnClicked"></Button>
+                        BackgroundColor="AliceBlue"
+                        Clicked="SwitchText_OnClicked">
+                </Button>
 
             </StackLayout>
 
@@ -69,7 +71,7 @@
                    WidthRequest="400" 
                    HeightRequest="200" 
                    FontSize="24"
-                   BackgroundColor="DarkGray"
+                   BackgroundColor="LightGray"
                    Text="Result of encode/decode">
             </Label>
 
@@ -87,26 +89,29 @@
             <StackLayout>
 
                 <StackLayout BackgroundColor="Black">
-                    
+
                     <Image x:Name="Cipher_Image"
                            Source="{Binding Image}"
                            Aspect="AspectFit"
                            HorizontalOptions="FillAndExpand"
-                           VerticalOptions="Start" />
+                           VerticalOptions="Start">
+                    </Image>
 
                     <Image x:Name="Cipher_Image_2"
                            Source="hill_cipher_part_2.png"
                            Aspect="AspectFit"
                            IsVisible="False"
                            HorizontalOptions="FillAndExpand"
-                           VerticalOptions="Start" />
+                           VerticalOptions="Start">
+                    </Image>
                     
                 </StackLayout>
 
                 <Label x:Name="Cipher_Description"
                        Text="{Binding Description}"
                        FontSize="20"
-                       Margin="20" />
+                       Margin="20">
+                </Label>
 
             </StackLayout>
             
@@ -121,7 +126,8 @@
             <Label x:Name="Cipher_History"
                    Text="{Binding History}"
                    FontSize="20"
-                   Margin="20" />
+                   Margin="20" >
+            </Label>
             
         </ScrollView>
 

@@ -53,9 +53,12 @@ namespace Encrypto.Models
 
 		// Must be either 4 or 9 letters
 		// Must also form an invertible matrix
+		// For now only going to allow matricies of size 2x2
+		// because the arithmetic for 3x3 leads to decimals
+		// when calculating matrix inverse.
         public override bool Is_Key_Valid()
         {
-			if (Key.Length != 4 && Key.Length != 9)
+			if (Key.Length != 4)
 			{
 				return false;
 			}

@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="Encrypto.MainPage">
     
-    <Frame BackgroundColor="GhostWhite" Padding="24" CornerRadius="0" >
+    <Frame BackgroundColor="DarkGray" Padding="24" CornerRadius="0" >
         
         <StackLayout>
             <!-- Place new controls here -->
@@ -21,17 +21,19 @@
                         WidthRequest="150" 
                         HeightRequest="150" 
                         CornerRadius="20"
-                        BackgroundColor="DarkGray"
-                        Text="Caesar Cipher" 
-                        Clicked="NavigateButton_OnClicked"></Button>
+                        BackgroundColor="GhostWhite"
+                        Text="Caesar Cipher"
+                        Clicked="NavigateButton_OnClicked">
+                </Button>
 
                 <Button x:Name="Hill_Cipher" 
                         WidthRequest="150" 
                         HeightRequest="150" 
                         CornerRadius="20"
-                        BackgroundColor="DarkGray"
+                        BackgroundColor="GhostWhite"
                         Text="Hill Cipher" 
-                        Clicked="NavigateButton_OnClicked"></Button>
+                        Clicked="NavigateButton_OnClicked">
+                </Button>
 
             </StackLayout>
 
@@ -41,23 +43,25 @@
                         WidthRequest="150" 
                         HeightRequest="150" 
                         CornerRadius="20"
-                        BackgroundColor="DarkGray"
+                        BackgroundColor="GhostWhite"
                         Text="Monoalphabetic Cipher" 
-                        Clicked="NavigateButton_OnClicked"></Button>
+                        Clicked="NavigateButton_OnClicked">
+                </Button>
 
                 <Button x:Name="Vernam_Cipher" 
                         WidthRequest="150" 
                         HeightRequest="150" 
                         CornerRadius="20"
-                        BackgroundColor="DarkGray"
+                        BackgroundColor="GhostWhite"
                         Text="Vernam Cipher" 
-                        Clicked="NavigateButton_OnClicked"></Button>
+                        Clicked="NavigateButton_OnClicked">
+                </Button>
 
             </StackLayout>
 
-            <Picker Title="Choose Cipher" 
-                SelectedIndexChanged="NavigateButton_OnClicked"              
-                HorizontalOptions="FillAndExpand">
+            <Picker Title="Choose Cipher"
+                    SelectedIndexChanged="NavigateButton_OnClicked"              
+                    HorizontalOptions="FillAndExpand">
                 <Picker.Items>
                     <x:String>Caesar Cipher</x:String>
                     <x:String>Vigenere Cipher</x:String>
