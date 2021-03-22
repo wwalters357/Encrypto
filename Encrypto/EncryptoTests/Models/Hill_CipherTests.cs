@@ -22,8 +22,15 @@ namespace Encrypto.Models.Tests
 
             // Check conversion with 2x2 matrix
             cipher.Message = cipher.Encrypt();
-            string expected = cipher.Decrypt();
-            Assert.AreEqual(expected, msg, true);
+            string actual = cipher.Decrypt();
+            Assert.AreEqual(msg, actual, true);
+
+            cipher.Message = "Hello World I am William";
+            string expected = "HELLOWORLDIAMWILLIAM";
+            cipher.Message = cipher.Encrypt();
+            Console.WriteLine(cipher.Message);
+            actual = cipher.Decrypt();
+            Assert.AreEqual(expected, actual, true);
 
             // Check conversion with 3x3 matrix
             /*msg = "Hello Will the hill cipher now works!";

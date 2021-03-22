@@ -194,7 +194,10 @@ namespace Encrypto.Models
         public bool Is_Invertible()
         {
             Calculated_Determinant = Determinant();
-            return !(Calculated_Determinant == 0 || GCD(Calculated_Determinant, 26) != 1);
+            bool result = !(Calculated_Determinant == 0 || GCD(Calculated_Determinant, 26) != 1);
+            Matrix actual = this * this.Inverse();
+            // Ensure the product of matrix and inverse equals the identity matrix.        
+            return (result) ? actual == new Matrix(I2x2) : result;
         }
 
         // Calculate modulus division

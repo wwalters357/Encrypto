@@ -11,6 +11,8 @@ namespace Encrypto.Models
 
         }
 
+		private static readonly int AlphabetLength = 26;
+
 		// --------------------------------------------------------------------
 		// ------------------- Accessor Methods -------------------------------
 		// --------------------------------------------------------------------
@@ -39,7 +41,19 @@ namespace Encrypto.Models
 			{
 				throw new Exception("Invalid Key");
 			}
-			return Hill_Substitution(Message, KeyMatrix.Inverse());
+			else if (Message.Length % 2 != 0)
+            {
+				throw new Exception("Invalid Message Length, Try adding a letter!");
+			}
+			Matrix inverse = KeyMatrix.Inverse();
+			for (int i = 0; i < inverse.Length; i++)
+            {
+				for (int j = 0; j < inverse.Width; j++)
+                {
+					inverse[i, j] = Mod(inverse[i, j], AlphabetLength);
+				}
+            }
+			return Hill_Substitution(Message, inverse);
 		}
 
         public override string Encrypt()
@@ -48,7 +62,8 @@ namespace Encrypto.Models
 			{
 				throw new Exception("Invalid Key");
 			}
-			return Hill_Substitution(Message, KeyMatrix);
+			string plainText = Format_Text(Message);
+			return Hill_Substitution(plainText, KeyMatrix);
 		}
 
 		// Must be either 4 or 9 letters
@@ -89,11 +104,10 @@ namespace Encrypto.Models
 			return keyMatrix;
         }
 
-        private string Hill_Substitution(string input, Matrix keyMatrix)
+		// Will need to be modified if alphabet is expanded
+		private string Format_Text(string input)
         {
-			string output = "";
 			string plainText = "";
-			int n = keyMatrix.Length;
 
 			// Create plaintext with only letters
 			foreach (char c in input)
@@ -103,20 +117,32 @@ namespace Encrypto.Models
 					plainText += c;
 				}
 			}
-			int length = plainText.Length;
+
+			if (plainText.Length % 2 != 0)
+			{
+				throw new Exception("Invalid Message Length, Try adding a letter!");
+			}
 
 			// Check length of input message 
-			int mod = Mod(plainText.Length, n);
-			while (mod != 0)
+			int mod = Mod(plainText.Length, KeyMatrix.Length);
+			while (mod >= 0)
 			{
 				plainText += 'A';
 				mod--;
 			}
 
-			for (int i = 0; i <= plainText.Length - n; i += n)
+			return plainText;
+		}
+
+        private string Hill_Substitution(string input, Matrix keyMatrix)
+        {
+			string output = "";
+			int n = keyMatrix.Length;
+
+			for (int i = 0; i <= input.Length - n; i += n)
 			{
 				// Break up string into groups of n
-				string strGroup = plainText.Substring(i, n);
+				string strGroup = input.Substring(i, n);
 				Matrix vector = new Matrix(n, 1);
 				for (int j = 0; j < n; j++)
 				{
@@ -129,10 +155,10 @@ namespace Encrypto.Models
 				// Add newly calculated letters to output
 				for (int j = 0; j < n; j++)
                 {
-					output += (char)(Mod(vector[j, 0], 26) + (int)'A');
+					output += (char)(Mod(vector[j, 0], AlphabetLength) + (int)'A');
                 }
 			}
-			return (output.Length <= length) ? output : output.Substring(0, length);
+			return output;
 		}
     }
 }

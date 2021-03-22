@@ -86,6 +86,7 @@ namespace Encrypto
 					}
 				}
 			}
+			Key = Key.ToUpper();
 			return true;
 		}
 

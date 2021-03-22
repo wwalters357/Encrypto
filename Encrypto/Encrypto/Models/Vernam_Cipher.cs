@@ -16,7 +16,7 @@ namespace Encrypto.Models
         // ------------------- Accessor Methods -------------------------------
         // --------------------------------------------------------------------
 
-        public byte[] MessageBytes { get; }
+        public byte[] MessageBytes { get; private set; }
         public byte[] GeneratedKey { get; set; }
 
         public override string Image
@@ -62,13 +62,18 @@ namespace Encrypto.Models
 
         public override string Decrypt()
         {
-            return Vernam_Translation(MessageBytes, GeneratedKey);
+            if (MessageBytes.Length != GeneratedKey.Length)
+            {
+                throw new Exception("Must encode first to generate key!");
+            }
+            return Vernam_Translation(GeneratedKey);
         }
 
         public override string Encrypt()
         {
+            MessageBytes = Encoding.ASCII.GetBytes(Message);
             GeneratedKey = Generate_Key(Message.Length);
-            return Vernam_Translation(MessageBytes, GeneratedKey);
+            return Vernam_Translation(GeneratedKey);
         }
 
         public override bool Is_Key_Valid()
@@ -86,13 +91,13 @@ namespace Encrypto.Models
          * The message is encrypted using XOR operation bewteen inBytes
          * and keyBytes. 
 	    */
-        private string Vernam_Translation(byte[] messageBytes, byte[] keyBytes)
+        private string Vernam_Translation(byte[] keyBytes)
         {
-            for (int i = 0; i < messageBytes.Length; i++)
+            for (int i = 0; i < MessageBytes.Length; i++)
             {
-                messageBytes[i] = (byte)(messageBytes[i] ^ keyBytes[i]);
+                MessageBytes[i] = (byte)(MessageBytes[i] ^ keyBytes[i]);
             }
-            return Encoding.ASCII.GetString(messageBytes);
+            return Encoding.ASCII.GetString(MessageBytes);
         }
     }
 }

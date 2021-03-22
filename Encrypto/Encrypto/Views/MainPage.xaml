@@ -15,51 +15,81 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Start" />
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <ScrollView VerticalOptions="FillAndExpand">
 
-                <Button x:Name="Caesar_Cipher" 
-                        WidthRequest="150" 
-                        HeightRequest="150" 
-                        CornerRadius="20"
-                        BackgroundColor="GhostWhite"
-                        Text="Caesar Cipher"
-                        Clicked="NavigateButton_OnClicked">
-                </Button>
+                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Spacing="25">
+                
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="25">
 
-                <Button x:Name="Hill_Cipher" 
-                        WidthRequest="150" 
-                        HeightRequest="150" 
-                        CornerRadius="20"
-                        BackgroundColor="GhostWhite"
-                        Text="Hill Cipher" 
-                        Clicked="NavigateButton_OnClicked">
-                </Button>
+                        <Button x:Name="Caesar_Cipher" 
+                                WidthRequest="150" 
+                                HeightRequest="150" 
+                                CornerRadius="20"
+                                BackgroundColor="GhostWhite"
+                                Text="Caesar Cipher"
+                                Clicked="NavigateButton_OnClicked">
+                        </Button>
 
-            </StackLayout>
+                        <Button x:Name="Hill_Cipher" 
+                                WidthRequest="150" 
+                                HeightRequest="150" 
+                                CornerRadius="20"
+                                BackgroundColor="GhostWhite"
+                                Text="Hill Cipher" 
+                                Clicked="NavigateButton_OnClicked">
+                        </Button>
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    </StackLayout>
 
-                <Button x:Name="Monoalphabetic_Cipher" 
-                        WidthRequest="150" 
-                        HeightRequest="150" 
-                        CornerRadius="20"
-                        BackgroundColor="GhostWhite"
-                        Text="Monoalphabetic Cipher" 
-                        Clicked="NavigateButton_OnClicked">
-                </Button>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="25">
 
-                <Button x:Name="Vernam_Cipher" 
-                        WidthRequest="150" 
-                        HeightRequest="150" 
-                        CornerRadius="20"
-                        BackgroundColor="GhostWhite"
-                        Text="Vernam Cipher" 
-                        Clicked="NavigateButton_OnClicked">
-                </Button>
+                        <Button x:Name="Monoalphabetic_Cipher" 
+                                WidthRequest="150" 
+                                HeightRequest="150" 
+                                CornerRadius="20"
+                                BackgroundColor="GhostWhite"
+                                Text="Monoalphabetic Cipher" 
+                                Clicked="NavigateButton_OnClicked">
+                        </Button>
 
-            </StackLayout>
+                        <Button x:Name="Vernam_Cipher" 
+                                WidthRequest="150" 
+                                HeightRequest="150" 
+                                CornerRadius="20"
+                                BackgroundColor="GhostWhite"
+                                Text="Vernam Cipher" 
+                                Clicked="NavigateButton_OnClicked">
+                        </Button>
 
-            <Picker Title="Choose Cipher"
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="25">
+
+                        <Button x:Name="Homophonic_Cipher" 
+                                WidthRequest="150" 
+                                HeightRequest="150" 
+                                CornerRadius="20"
+                                BackgroundColor="GhostWhite"
+                                Text="Homophonic Cipher" 
+                                Clicked="NavigateButton_OnClicked">
+                        </Button>
+
+                        <Button x:Name="Vigenere_Cipher" 
+                                WidthRequest="150" 
+                                HeightRequest="150" 
+                                CornerRadius="20"
+                                BackgroundColor="GhostWhite"
+                                Text="Vigenere Cipher" 
+                                Clicked="NavigateButton_OnClicked">
+                        </Button>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+            </ScrollView>
+
+                    <Picker Title="Choose Cipher"
                     SelectedIndexChanged="NavigateButton_OnClicked"              
                     HorizontalOptions="FillAndExpand">
                 <Picker.Items>

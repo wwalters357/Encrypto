@@ -28,20 +28,27 @@ namespace Encrypto
             // Set IsBusy to false on inital page load.
             cipher.IsBusy = false;
 
-            // Set keyboard input type based on Cipher
-            if (cipher.Type == Cipher_Type.Caesar)
+            // Set page elements based on Cipher type
+            switch (cipher.Type)
             {
-                Input_Key.Keyboard = Keyboard.Numeric;
-            }
-            else
-            {
-                Input_Key.Keyboard = Keyboard.Default;
-            }
-
-            // Hill Cipher needs two images
-            if (cipher.Type == Cipher_Type.Hill)
-            {
-                Cipher_Image_2.IsVisible = true;
+                case Cipher_Type.Caesar:
+                    Input_Key.Keyboard = Keyboard.Numeric;
+                    Input_Key.MaxLength = 2;
+                    break;
+                case Cipher_Type.Hill:
+                    Input_Key.MaxLength = 4;
+                    break;
+                case Cipher_Type.Homophonic:
+                    Input_Key.Placeholder = "Ex. 21,27,31,40;15;01,33;20,34;22,28,32,36,37;05;17;14;02,29,38,41;19;03;07,39,42;09,43;12,48,97;18,60,85;26,44;25;24,49;10,30,45,99;06,96,55;16,94;23;13;11;08;04;";
+                    Input_Key.Text = "21,27,31,40;15;01,33;20,34;22,28,32,36,37;05;17;14;02,29,38,41;19;03;07,39,42;09,43;12,48,97;18,60,85;26,44;25;24,49;10,30,45,99;06,96,55;16,94;23;13;11;08;04;";
+                    break;
+                case Cipher_Type.Monoalphabetic:
+                    break;
+                case Cipher_Type.Vernam:
+                    Input_Key.IsVisible = false;
+                    break;
+                case Cipher_Type.Vigenere:
+                    break;
             }
         }
 
@@ -129,9 +136,9 @@ namespace Encrypto
                     // performs its work. The UI thread is free to perform other work.
                     Result_Message.Text = await Task.Run(() => cipher.Decrypt);
                 }
-                catch (Exception)
+                catch (Exception E)
                 {
-                    Result_Message.Text = "Invalid Key Entered";
+                    Result_Message.Text = E.Message;
                 }
 
                 // Disable loading indicator

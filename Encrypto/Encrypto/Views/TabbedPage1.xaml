@@ -8,76 +8,80 @@
     <!--Pages can be added as references or inline-->
     <ContentPage Title="Encode Decode" BackgroundColor="DarkGray">
 
-        <StackLayout>
+        <ScrollView VerticalOptions="FillAndExpand">
+        
+            <StackLayout>
 
-            <Label x:Name="Cipher_Name"
-                   Text="{Binding Name}"
-                   FontSize="30"
-                   VerticalOptions="Start"
-                   HorizontalOptions="Center">
-            </Label>
+                <Label x:Name="Cipher_Name"
+                       Text="{Binding Name}"
+                       FontSize="30"
+                       VerticalOptions="Start"
+                       HorizontalOptions="Center">
+                </Label>
 
-            <Editor x:Name="Input_Text"
-                    ClassId="Input_Text"
-                    Placeholder="Enter message here:"
-                    FontSize="24"
-                    BackgroundColor="LightGray"   
-                    IsVisible="True"
-                    WidthRequest="200" 
-                    HeightRequest="200"
-                    TextChanged="OnEntryTextChanged"
-                    Completed="OnEntryCompleted">
-            </Editor>
+                <Editor x:Name="Input_Text"
+                        ClassId="Input_Text"
+                        Placeholder="Enter message here:"
+                        FontSize="24"
+                        BackgroundColor="LightGray"   
+                        IsVisible="True"
+                        WidthRequest="200" 
+                        HeightRequest="200"
+                        TextChanged="OnEntryTextChanged"
+                        Completed="OnEntryCompleted">
+                </Editor>
 
-            <Editor x:Name="Input_Key"
-                    ClassId="Input_Key"
-                    Placeholder="Enter key here:"
-                    FontSize="24"
-                    BackgroundColor="LightGray"       
-                    WidthRequest="200"
-                    TextChanged="OnEntryTextChanged"
-                    Completed="OnEntryCompleted">
-            </Editor>
+                <Editor x:Name="Input_Key"
+                        ClassId="Input_Key"
+                        Placeholder="Enter key here:"
+                        FontSize="24"
+                        BackgroundColor="LightGray"       
+                        WidthRequest="200"
+                        TextChanged="OnEntryTextChanged"
+                        Completed="OnEntryCompleted">
+                </Editor>
 
-            <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal">
 
-                <Button Text="Encode"
-                        WidthRequest="150"
-                        CornerRadius="20"
-                        HorizontalOptions="Start"
-                        BackgroundColor="AliceBlue"
-                        Clicked="Encryption_OnClicked">
-                </Button>
+                    <Button Text="Encode"
+                            WidthRequest="150"
+                            CornerRadius="20"
+                            HorizontalOptions="Start"
+                            BackgroundColor="AliceBlue"
+                            Clicked="Encryption_OnClicked">
+                    </Button>
 
-                <Button Text="Decode"
-                        WidthRequest="150"
-                        CornerRadius="20"
-                        HorizontalOptions="Start"
-                        BackgroundColor="AliceBlue"
-                        Clicked="Decryption_OnClicked">
-                </Button>
+                    <Button Text="Decode"
+                            WidthRequest="150"
+                            CornerRadius="20"
+                            HorizontalOptions="Start"
+                            BackgroundColor="AliceBlue"
+                            Clicked="Decryption_OnClicked">
+                    </Button>
 
-                <Button Text="Switch"
+                    <Button Text="Switch"
                         
-                        CornerRadius="20"
-                        HorizontalOptions="End"
-                        BackgroundColor="AliceBlue"
-                        Clicked="SwitchText_OnClicked">
-                </Button>
+                            CornerRadius="20"
+                            HorizontalOptions="End"
+                            BackgroundColor="AliceBlue"
+                            Clicked="SwitchText_OnClicked">
+                    </Button>
+
+                </StackLayout>
+
+                <Label x:Name="Result_Message" 
+                       WidthRequest="400" 
+                       HeightRequest="200" 
+                       FontSize="24"
+                       BackgroundColor="LightGray"
+                       Text="Result of encode/decode">
+                </Label>
+
+                <ActivityIndicator x:Name="Loader" IsEnabled="{Binding IsBusy}" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
 
             </StackLayout>
 
-            <Label x:Name="Result_Message" 
-                   WidthRequest="400" 
-                   HeightRequest="200" 
-                   FontSize="24"
-                   BackgroundColor="LightGray"
-                   Text="Result of encode/decode">
-            </Label>
-
-            <ActivityIndicator x:Name="Loader" IsEnabled="{Binding IsBusy}" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
-
-        </StackLayout>
+        </ScrollView>
 
     </ContentPage>
 
