@@ -133,4 +133,22 @@
       <Name>Encrypto</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\caesar_cipher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hill_cipher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\homophonic_cipher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\monoalphabetic_cipher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\vernam_cipher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\vigenere_cipher.png" />
+  </ItemGroup>
 </Project>

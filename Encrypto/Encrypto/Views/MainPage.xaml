@@ -89,7 +89,7 @@
 
             </ScrollView>
 
-                    <Picker Title="Choose Cipher"
+            <Picker Title="Choose Cipher"
                     SelectedIndexChanged="NavigateButton_OnClicked"              
                     HorizontalOptions="FillAndExpand">
                 <Picker.Items>

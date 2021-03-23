@@ -21,7 +21,7 @@ namespace Encrypto.Models
         {
 			get
             {
-				return "hill_cipher_part_1.png";
+				return "hill_cipher.png";
             }
         }
 

@@ -39,7 +39,6 @@ namespace Encrypto
                     Input_Key.MaxLength = 4;
                     break;
                 case Cipher_Type.Homophonic:
-                    Input_Key.Placeholder = "Ex. 21,27,31,40;15;01,33;20,34;22,28,32,36,37;05;17;14;02,29,38,41;19;03;07,39,42;09,43;12,48,97;18,60,85;26,44;25;24,49;10,30,45,99;06,96,55;16,94;23;13;11;08;04;";
                     Input_Key.Text = "21,27,31,40;15;01,33;20,34;22,28,32,36,37;05;17;14;02,29,38,41;19;03;07,39,42;09,43;12,48,97;18,60,85;26,44;25;24,49;10,30,45,99;06,96,55;16,94;23;13;11;08;04;";
                     break;
                 case Cipher_Type.Monoalphabetic:
@@ -113,7 +112,7 @@ namespace Encrypto
                     Result_Message.Text = "Invalid Key Entered";
                 }
 
-                // Disable loading indicator
+                // Deactivate loading indicator
                 Loading();
             }
             else
@@ -141,7 +140,7 @@ namespace Encrypto
                     Result_Message.Text = E.Message;
                 }
 
-                // Disable loading indicator
+                // Deactivate loading indicator
                 Loading();
             }
             else

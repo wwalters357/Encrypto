@@ -92,16 +92,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\vernam_cipher.png" />
+    <AndroidResource Include="Resources\drawable\caesar_cipher.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\vigenere_caesar_cipher.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\hill_cipher_part_1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\hill_cipher_part_2.png" />
+    <AndroidResource Include="Resources\drawable\hill_cipher.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\homophonic_cipher.png" />
@@ -110,7 +104,10 @@
     <AndroidResource Include="Resources\drawable\monoalphabetic_cipher.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\caesar_cipher.png" />
+    <AndroidResource Include="Resources\drawable\vernam_cipher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\vigenere_cipher.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
