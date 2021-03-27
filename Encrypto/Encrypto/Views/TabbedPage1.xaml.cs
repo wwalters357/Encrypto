@@ -101,7 +101,7 @@ namespace Encrypto
                 try
                 {
                     // Activate loading indicator
-                    Loading();
+                    ShowLoading();
 
                     // This line will yield control to the UI while Encrypt()
                     // performs its work. The UI thread is free to perform other work.
@@ -113,7 +113,7 @@ namespace Encrypto
                 }
 
                 // Deactivate loading indicator
-                Loading();
+                HideLoading();
             }
             else
             {
@@ -129,7 +129,7 @@ namespace Encrypto
                 try
                 {
                     // Activate loading indicator
-                    Loading();
+                    ShowLoading();
 
                     // This line will yield control to the UI while Decrypt()
                     // performs its work. The UI thread is free to perform other work.
@@ -141,7 +141,7 @@ namespace Encrypto
                 }
 
                 // Deactivate loading indicator
-                Loading();
+                HideLoading();
             }
             else
             {
@@ -157,13 +157,22 @@ namespace Encrypto
             Result_Message.Text = temp;
         }
 
-        private void Loading()
+        private void ShowLoading()
         {
-            bool load = !cipher.IsBusy;
+            bool load = true;
             Loader.IsEnabled = load;
             Loader.IsRunning = load;
             Loader.IsVisible = load;
             cipher.IsBusy    = load;
+        }
+
+        private void HideLoading()
+        {
+            bool load = false;
+            Loader.IsEnabled = load;
+            Loader.IsRunning = load;
+            Loader.IsVisible = load;
+            cipher.IsBusy = load;
         }
 
         // --------------------------------------------------------------------
